@@ -13,6 +13,7 @@ use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
 
 /**
  * @ORM\Entity(repositoryClass=ArticlesRepository::class)
+ * @Vich\Uploadable
  */
 class Articles
 {
@@ -56,9 +57,10 @@ class Articles
     private $updatedAt;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $featuredImage;
+
 
     /**
      * @Vich\UploadableField(mapping="featured_images", fileNameProperty="featuredImage")
@@ -164,12 +166,13 @@ class Articles
         return $this->featuredImage;
     }
 
-    public function setFeaturedImage(string $featuredImage): self
+    public function setFeaturedImage(?string $featuredImage): self
     {
         $this->featuredImage = $featuredImage;
 
         return $this;
     }
+
 
     public function getUsers(): ?Users
     {
@@ -256,4 +259,5 @@ class Articles
 
         return $this;
     }
+
 }
