@@ -1,0 +1,9 @@
+<div class="blog-layout__aside-item blog-layout__aside-item_bordered">
+    <p class="custom-heading-line heading-8">Categories</p>
+    <ul class="list-categories">
+        <li {% if app.request.requesturi == path('tutoriels_home') %}class="active"{% endif %}><a href="{{ path('tutoriels_home') }}">Toutes catégories</a><span class="count">{{ totalArticles }}</span></li>
+        {% for categorie in categories %}
+            <li {% if app.request.requesturi == path('tutoriels_home', {'slug': categorie.slug}) %}class="active"{% endif %}> <a href="{{ path('tutoriels_home', {'slug': categorie.slug}) }}">{{ categorie.nom }}</a><span class="count">{{ categorie.articles|length }}</span></li>    
+        {% endfor %}
+    </ul>
+</div>

@@ -1,0 +1,21 @@
+<div class="blog-layout__aside-item blog-layout__aside-item_bordered">
+    <p class="custom-heading-line heading-8">Dernières publications</p>
+    <ul class="list-posts">
+        <!-- Post Line-->
+        {% for dernierPost in derniersPosts %}
+            <li>
+                {% set mois = dernierPost.createdAt|date("F") %}
+                {% set jour = dernierPost.createdAt|date("d") %}
+                <article class="post-line">
+                    <time class="post-line__time" datetime="2018">
+                        <span class="post-line__time-day">{{ jour }}</span>
+                        <span class="post-line__time-month">{{ mois|trans }}</span>
+                    </time>
+                    <div class="post-line__title">
+                        <a href="blog-post.html">{{dernierPost.titre}}</a>
+                    </div>
+                </article>  
+            </li>
+        {% endfor %}
+    </ul>
+</div>

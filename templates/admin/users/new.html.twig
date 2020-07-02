@@ -1,0 +1,41 @@
+{% extends 'admin/base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}Créer un utilisateur{% endblock %}
+
+{% block body %}
+
+
+    <div class="app-main__inner">
+        <div class="app-page-title">
+            <div class="page-title-wrapper">
+                <div class="page-title-heading">
+                    <div>Créer un utilisateur
+                        <div class="page-title-subheading">Vous pouvez sur cette page créer un nouvel utilisateur</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tabs-animation">
+            <div class="card mb-3">
+                <div class="card-header-tab card-header">
+                    <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+                        <i class="header-icon fas fa-user-edit mr-3 text-muted opacity-6"></i>
+                        Infos personelles
+                    </div>
+                    
+                </div>
+                <div class="card-body">
+                    {{ include('admin/users/_form.html.twig', {'button_label': 'Créer le nouvel utilisateur'}) }}
+                </div>
+                
+            </div>
+            
+
+
+        </div>
+    </div>
+
+
+    
+{% endblock %}

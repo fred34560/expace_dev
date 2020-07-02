@@ -1,0 +1,71 @@
+<ul class="vertical-nav-menu">
+    <li class="app-sidebar__heading">Navigation</li>
+    <li>
+        <a href="index.html">
+            <i class="metismenu-icon fas fa-tachometer-alt"></i>
+            Tableau de bord
+        </a>
+    </li>
+    {# pour avoir un menu actif ont ajoute la class "mm-active" sur <li> #}
+    <li>
+        <a href="#">
+            <i class="metismenu-icon fab fa-blogger"></i>
+            Gestion du blog
+            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+        </a>
+        <ul>
+            <li>
+                <a href="">
+                    <i class="metismenu-icon"></i>
+                    Gérer les articles
+                </a>
+            </li>
+            <li>
+                <a href="index.html">
+                    <i class="metismenu-icon"></i>
+                    Gérer les catégories
+                </a>
+            </li>
+            <li>
+                <a href="index.html">
+                    <i class="metismenu-icon"></i>
+                    Gérer les commentaires
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a href="{{path('admin_users_index')}}">
+            <i class="metismenu-icon fas fa-users-cog"></i>
+            Gérer les utilisateurs
+        </a>
+    </li>
+        <li>
+        <a href="#">
+            <i class="metismenu-icon fas fa-cogs"></i>
+            Configuration
+            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+        </a>
+        <ul>
+            <li>
+                <a href="index.html">
+                    <i class="metismenu-icon"></i>
+                    Société
+                </a>
+            </li>
+            <li>
+                <a href="index.html">
+                    <i class="metismenu-icon"></i>
+                    Informations
+                </a>
+            </li>
+            <li>
+                <a href="index.html">
+                    <i class="metismenu-icon"></i>
+                    Autres
+                </a>
+            </li>
+        </ul>
+    </li>
+
+</ul>
