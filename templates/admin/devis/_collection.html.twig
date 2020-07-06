@@ -1,0 +1,47 @@
+{% block _create_devis_services_widget %}
+    
+    
+    
+    {{ form_widget(form) }}
+
+    <input type="hidden" id="widgets-counter" value="0">
+
+    <div class="form-group">
+        
+    </div>
+{% endblock %}
+
+
+{% block _create_devis_services_entry_row %}
+
+    {{ form_widget(form) }}
+
+{% endblock %}
+
+
+{% block _create_devis_services_entry_widget %}
+
+    <div id="block_{{id}}">
+
+                                <div class="col-12">
+                                    <div class="main-card mb-3 card">
+                                        <div class="card-header">
+                                            <i class="header-icon lnr-laptop-phone icon-gradient bg-plum-plate"> </i>Renseignement sur la tache
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-6">{{ form_row(form.type) }}</div>
+                                                <div class="col-3">{{ form_row(form.quantite) }}</div>
+                                                <div class="col-3">{{ form_row(form.tarif) }}</div>
+                                                <div class="col-12">{{ form_row(form.info) }}</div>
+                                            </div>
+                                        </div>
+                                        <div class="d-block text-right card-footer">
+                                            <button data-action="delete" data-target="#block_{{id}}" class="btn btn-danger btn-lg">Supprimer cette tache</button>
+                                        </div>
+                                    </div>
+                                </div>
+        
+    </div>
+
+{% endblock %}

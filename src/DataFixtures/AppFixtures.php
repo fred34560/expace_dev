@@ -9,6 +9,7 @@ use App\Entity\PostLike;
 use App\Entity\Categories;
 use App\Entity\CommentLike;
 use App\Entity\Commentaires;
+use App\Entity\Projets;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -26,6 +27,7 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $faker = Factory::create('fr-FR');
+        
 
 
         // Nous gérons les utilisateurs
@@ -48,7 +50,14 @@ class AppFixtures extends Fixture
                  ->setPassword($hash)
                  ->setIsVerified(1)
                  ->setAvatar($picture)
-                 ->setPseudo($faker->userName);
+                 ->setPseudo($faker->userName)
+                 ->setNom($faker->lastName)
+                 ->setPrenom($faker->firstName($genre))
+                 ->setAdresse($faker->streetAddress)
+                 ->setCodePostal($faker->postcode)
+                 ->setVille($faker->city)
+                 ->setPays($faker->country)
+                 ->setSociete($faker->company);
         
         $manager->persist($user);
         $users[] = $user;        
@@ -163,7 +172,25 @@ class AppFixtures extends Fixture
             
             }
 
+            $projet = new Projets();
+        
+            for ($n=1; $n<=10; $n++) {
+
+                $statut = ['en_cours', 'terminé', 'ouverture'];
+
+                $projet->setClient($faker->randomElement($users))
+                       ->setTitre($faker->sentence())
+                       ->setStatut($faker->randomElement($statut))
+                       ->setBesoinsClient('<p>' . join ('</p><p>', $faker->paragraphs(5)) . '</p>')
+                       ->setCreatedAt($faker->dateTime('now'))
+                       ->setUpdatedAt($faker->dateTime('now'));
+                       
+
+                $manager->persist($projet);
+            }
+
         }
+        
 
         //Nous gérons les commentaires
         

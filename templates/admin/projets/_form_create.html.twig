@@ -1,0 +1,25 @@
+{{ form_start(form) }}
+
+<div class="row">
+    <div class="col-6">
+        {{ form_row(form.titre) }}
+    </div>
+    <div class="col-6">
+        {{ form_row(form.client) }}
+    </div>
+    <div class="col-12">
+        {{ form_row(form.besoinsClient) }}
+    </div>
+    <div class="col-6">
+        {{ form_row(form.propositionCommercialFile) }}
+    </div>
+    <div class="col-6">
+        {{ form_row(form.cahierChargeFile) }}
+    </div>
+    
+    <div class="col-12">
+        <button class="btn btn-info btn-block btn-sm">{{ button_label|default('Save') }}</button>
+    </div>
+</div>
+    
+{{ form_end(form) }}
