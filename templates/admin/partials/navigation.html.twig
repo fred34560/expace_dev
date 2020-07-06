@@ -54,10 +54,25 @@
         </a>
         <ul>
             <li>
-                <a href="index.html">
+                <a href="#">
                     <i class="metismenu-icon"></i>
                     Société
+                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                 </a>
+                <ul>
+                    <li>
+                        <a href="{{ path('admin_identite_societe_new') }}">
+                            <i class="metismenu-icon"></i>
+                            Créer la société
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('admin_identite_societe_edit', {'id': '1'}) }}">
+                            <i class="metismenu-icon"></i>
+                            Editer la société
+                        </a>
+                    </li>
+                </ul>
             </li>
             <li>
                 <a href="index.html">
