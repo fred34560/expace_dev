@@ -128,6 +128,11 @@ class Users implements UserInterface
      */
     private $societe;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Factures::class, mappedBy="client")
+     */
+    private $factures;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
@@ -136,6 +141,7 @@ class Users implements UserInterface
         $this->postLikes = new ArrayCollection();
         $this->projets = new ArrayCollection();
         $this->notifications = new ArrayCollection();
+        $this->factures = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -547,6 +553,37 @@ class Users implements UserInterface
     public function setSociete(?string $societe): self
     {
         $this->societe = $societe;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Factures[]
+     */
+    public function getFactures(): Collection
+    {
+        return $this->factures;
+    }
+
+    public function addFacture(Factures $facture): self
+    {
+        if (!$this->factures->contains($facture)) {
+            $this->factures[] = $facture;
+            $facture->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFacture(Factures $facture): self
+    {
+        if ($this->factures->contains($facture)) {
+            $this->factures->removeElement($facture);
+            // set the owning side to null (unless already changed)
+            if ($facture->getClient() === $this) {
+                $facture->setClient(null);
+            }
+        }
 
         return $this;
     }

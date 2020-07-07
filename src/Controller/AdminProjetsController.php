@@ -161,6 +161,7 @@ class AdminProjetsController extends AbstractController
                 'societe' => $projet->getClient()->getSociete()
             ];
 
+            
 
             $devis->setCreatedAt(\time())
                   ->setClient($client)
