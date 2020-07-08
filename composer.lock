@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "633553ee2c663f3acb33d9f61b5f3554",
+    "content-hash": "8476129d57f38ce77792f0c28c108c26",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -1324,6 +1324,59 @@
             "time": "2020-06-16T20:11:17+00:00"
         },
         {
+            "name": "expace/pdf-invoice",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/expace-dev/pdf-invoice.git",
+                "reference": "50f81c67f25b7f9c9db6ae17eff6538270d793c8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/expace-dev/pdf-invoice/zipball/50f81c67f25b7f9c9db6ae17eff6538270d793c8",
+                "reference": "50f81c67f25b7f9c9db6ae17eff6538270d793c8",
+                "shasum": ""
+            },
+            "require": {
+                "ext-iconv": "*",
+                "ext-mbstring": "*",
+                "php": ">=5.6",
+                "setasign/fpdf": "~1.8.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~5.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.6-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Konekt\\PdfInvoice\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Expace Development",
+                    "homepage": "https://github.com/expace-dev"
+                }
+            ],
+            "description": "Librairie pour générer des devis et factures en PDF",
+            "keywords": [
+                "devis",
+                "expace",
+                "factures",
+                "pdr"
+            ],
+            "time": "2020-07-08T12:36:32+00:00"
+        },
+        {
             "name": "friendsofsymfony/ckeditor-bundle",
             "version": "2.2.0",
             "source": {
@@ -1540,59 +1593,6 @@
                 "yaml"
             ],
             "time": "2020-06-06T16:52:59+00:00"
-        },
-        {
-            "name": "konekt/pdf-invoice",
-            "version": "1.6.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/artkonekt/pdf-invoice.git",
-                "reference": "934e4a4018a39cd8e362840e89e1417b751cedad"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/artkonekt/pdf-invoice/zipball/934e4a4018a39cd8e362840e89e1417b751cedad",
-                "reference": "934e4a4018a39cd8e362840e89e1417b751cedad",
-                "shasum": ""
-            },
-            "require": {
-                "ext-iconv": "*",
-                "ext-mbstring": "*",
-                "php": ">=5.6",
-                "setasign/fpdf": "~1.8.1"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~5.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.6-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Konekt\\PdfInvoice\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Attila Fulop",
-                    "homepage": "https://github.com/fulopattila122"
-                }
-            ],
-            "description": "Library to generate PDF invoices",
-            "keywords": [
-                "artkonekt",
-                "invoice",
-                "konekt",
-                "pdf"
-            ],
-            "time": "2020-06-21T18:35:43+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -7606,7 +7606,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "expace/pdf-invoice": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

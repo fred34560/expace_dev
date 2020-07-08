@@ -2,84 +2,52 @@
 
 namespace App\Controller;
 
-use App\Entity\Factures;
-use App\Entity\IdentiteSociete;
-use App\Form\FacturesType;
+use App\Entity\Devis;
+use App\Form\DevisType;
+use App\Repository\DevisRepository;
 use Konekt\PdfInvoice\InvoicePrinter;
-use App\Repository\FacturesRepository;
 use App\Repository\IdentiteSocieteRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
- * @Route("/admin/factures")
+ * @Route("/admin/devis")
  */
-class FacturesController extends AbstractController
+class DevisController extends AbstractController
 {
     /**
-     * @Route("/", name="admin_factures_index", methods={"GET"})
+     * @Route("/", name="admin_devis_index", methods={"GET"})
      */
-    public function index(FacturesRepository $facturesRepository): Response
+    public function index(DevisRepository $devisRepository): Response
     {
-        return $this->render('admin/factures/index.html.twig', [
-            'factures' => $facturesRepository->findAll(),
+        return $this->render('admin/devis/index.html.twig', [
+            'devis' => $devisRepository->findAll(),
         ]);
     }
 
     /**
-     * @Route("/new", name="admin_factures_new", methods={"GET","POST"})
+     * @Route("/delete/{id}", name="admin_devis_delete")
      */
-    public function new(Request $request): Response
+    public function delete(Request $request, Devis $devi): Response
     {
-        $facture = new Factures();
-        $form = $this->createForm(FacturesType::class, $facture);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-
-            $facture->setCreatedAt(\time())
-                    ->setStatut('en_attente');
-
-            $entityManager->persist($facture);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('admin_factures_index');
-        }
-
-        return $this->render('admin/factures/new.html.twig', [
-            'facture' => $facture,
-            'form' => $form->createView(),
-        ]);
-    }
-
-
-    /**
-     * @Route("/delete/{id}", name="admin_factures_delete")
-     */
-    public function delete(Request $request, Factures $facture): Response
-    {
-        
-
         $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->remove($facture);
+        $entityManager->remove($devi);
         $entityManager->flush();
 
-        return $this->redirectToRoute('admin_factures_index');
+        return $this->redirectToRoute('admin_devis_index');
     }
 
-    /**
+        /**
      * Permet d'afficher une facture
      * 
-     * @Route("/{id}/view", name="admin_factures_view")
+     * @Route("/{id}/view", name="admin_devis_view")
      *
-     * @param Factures $facture
+     * @param Devis $devi
      * @return void
      */
-    public function view(Factures $factures, IdentiteSocieteRepository $info_societe) {
+    public function view(Devis $devi, IdentiteSocieteRepository $info_societe) {
         
         $societe = $info_societe->findOneBy(['id' => '1']);
 
@@ -87,7 +55,7 @@ class FacturesController extends AbstractController
         setlocale(LC_TIME, 'fr','fr_FR','fr_FR@euro','fr_FR.utf8','fr-FR','fra');
         
 
-        $invoice = new InvoicePrinter('A4', '€', 'factures_fr');
+        $invoice = new InvoicePrinter('A4', '€', 'devis_fr');
 
         
 
@@ -106,31 +74,33 @@ class FacturesController extends AbstractController
         $ape_presta = utf8_decode('APE: ' . $societe->getApe());
         $vide = html_entity_decode('&nbsp;');
 
-        $nom_client = strtoupper($factures->getClient()->getNom());
-        $prenom_client = mb_strtolower($factures->getClient()->getPrenom());
+        
+
+        $nom_client = strtoupper($devi->getClient()['nom']);
+        $prenom_client = mb_strtolower($devi->getClient()['prenom']);
         $prenom_client = ucwords($prenom_client);
         $client = $nom_client. ' '  .$prenom_client;
-        $adresse_client = $factures->getClient()->getAdresse();
-        $postalCode_client = $factures->getClient()->getCodePostal();
-        $ville_client = $factures->getClient()->getVille();
+        $adresse_client = $devi->getClient()['adresse'];
+        $postalCode_client = $devi->getClient()['codePostal'];
+        $ville_client = $devi->getClient()['ville'];
         $adresse2 = $postalCode_client. ' ' .$ville_client;
-        $pays_client = strtoupper($factures->getClient()->getPays());
+        $pays_client = strtoupper($devi->getClient()['pays']);
 
 
-        if (strlen($factures->getId()) == 1) {
-            $fact = 'FA0000' .$factures->getId();
+        if (strlen($devi->getId()) == 1) {
+            $fact = 'DEV0000' .$devi->getId();
         }
-        elseif (strlen($factures->getId()) == 2) {
-            $fact = 'FA000' .$factures->getId();
+        elseif (strlen($devi->getId()) == 2) {
+            $fact = 'DEV000' .$devi->getId();
         }
-        elseif (strlen($factures->getId()) == 3) {
-            $fact = 'FA00' .$factures->getId();
+        elseif (strlen($devi->getId()) == 3) {
+            $fact = 'DEV00' .$devi->getId();
         }
-        elseif (strlen($factures->getId()) == 4) {
-            $fact = 'FA0' .$factures->getId();
+        elseif (strlen($devi->getId()) == 4) {
+            $fact = 'DEV0' .$devi->getId();
         }
-        elseif (strlen($factures->getId()) == 5) {
-            $fact = 'FA' .$factures->getId();
+        elseif (strlen($devi->getId()) == 5) {
+            $fact = 'DEV' .$devi->getId();
         }
 
 
@@ -138,10 +108,11 @@ class FacturesController extends AbstractController
         /* Header settings */
         $invoice->setLogo("images/logo_doc.png");   //logo image path
         $invoice->setColor("#2780e3");      // pdf color scheme
-        $invoice->setType("Facture");    // Invoice Type
+        $invoice->setType("Devis");    // Invoice Type
         $invoice->setReference($fact);   // Reference
-        $invoice->setDate(strftime("%d %B %Y", $factures->getCreatedAt()));   //Billing Date
-        $invoice->setDue(strftime("%d %B %Y", $factures->getCreatedAt() + 604800));    // Due Date
+        $invoice->setDate(strftime("%d %B %Y", $devi->getCreatedAt()));   //Billing Date
+        $invoice->setDue(strftime("%d %B %Y", $devi->getCreatedAt() + 2592000));    // Due Date
+        
         
         $invoice->setFrom([
             $full_nom_presta,
@@ -155,7 +126,7 @@ class FacturesController extends AbstractController
             $ape_presta    
          ]);
 
-         if ($factures->getClient()->getSociete() === null) {
+         if ($devi->getClient()['societe'] === null) {
              $invoice->setTo([
                 $client,
                 $adresse_client,
@@ -165,7 +136,7 @@ class FacturesController extends AbstractController
          }
          else {
             $invoice->setTo([
-                strtoupper($factures->getClient()->getSociete()),
+                strtoupper($devi->getClient()['societe']),
                 $client,
                 $adresse_client,
                 $adresse2,
@@ -176,7 +147,7 @@ class FacturesController extends AbstractController
         
 
 
-             $tableau = $factures->getServices();
+             $tableau = $devi->getServices();
              $tarif_total = null;
 
              foreach($tableau as $values){
