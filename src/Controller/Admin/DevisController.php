@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Devis;
-use App\Form\DevisType;
+use App\Form\Admin\DevisType;
 use App\Repository\DevisRepository;
 use Konekt\PdfInvoice\InvoicePrinter;
 use App\Repository\IdentiteSocieteRepository;

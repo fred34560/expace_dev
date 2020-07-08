@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Articles;
-use App\Form\ArticlesType;
+use App\Form\Admin\ArticlesType;
 use App\Repository\ArticlesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/admin/articles")
  */
-class AdminArticlesController extends AbstractController
+class ArticlesController extends AbstractController
 {
     /**
      * @Route("/", name="admin_articles_index", methods={"GET"})

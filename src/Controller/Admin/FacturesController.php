@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Factures;
 use App\Entity\IdentiteSociete;
-use App\Form\FacturesType;
+use App\Form\Admin\FacturesType;
 use Konekt\PdfInvoice\InvoicePrinter;
 use App\Repository\FacturesRepository;
 use App\Repository\IdentiteSocieteRepository;

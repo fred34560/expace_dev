@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Categories;
-use App\Form\CategoriesType;
+use App\Form\Admin\CategoriesType;
 use App\Repository\CategoriesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/admin/categories")
  */
-class AdminCategoriesController extends AbstractController
+class CategoriesController extends AbstractController
 {
     /**
      * @Route("/", name="admin_categories_index", methods={"GET"})

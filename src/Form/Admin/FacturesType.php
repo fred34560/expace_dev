@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Admin;
 
 use App\Entity\Users;
 use App\Entity\Factures;
-use App\Form\ServicesType;
+use App\Form\Admin\ServicesType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Devis;
 use App\Entity\Projets;
-use App\Form\ProjetsType;
+use App\Form\Admin\ProjetsType;
 use App\Entity\Notifications;
-use App\Form\CreateDevisType;
+use App\Form\Admin\CreateDevisType;
 use App\Repository\ProjetsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,7 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 /**
  * @Route("/admin/projets")
  */
-class AdminProjetsController extends AbstractController
+class ProjetsController extends AbstractController
 {
     /**
      * @Route("/", name="admin_projets_index", methods={"GET"})

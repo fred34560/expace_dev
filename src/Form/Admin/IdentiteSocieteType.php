@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Admin;
 
 use App\Entity\IdentiteSociete;
 use Symfony\Component\Form\AbstractType;

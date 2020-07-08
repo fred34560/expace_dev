@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Users;
-use App\Form\UsersType;
+use App\Form\Admin\UsersType;
 use App\Repository\UsersRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,7 +14,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 /**
  * @Route("/admin/users")
  */
-class AdminUsersController extends AbstractController
+class UsersController extends AbstractController
 {
     /**
      * @Route("/", name="admin_users_index", methods={"GET"})

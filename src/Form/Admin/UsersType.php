@@ -1,29 +1,27 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Admin;
 
-use App\Entity\Devis;
+use App\Entity\Users;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class DevisType extends AbstractType
+class UsersType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('client')
-            ->add('projet')
-            ->add('statut')
-            ->add('services')
-            ->add('createdAt')
+            ->add('email')
+            ->add('avatar')
+            ->add('pseudo')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Devis::class,
+            'data_class' => Users::class,
         ]);
     }
 }

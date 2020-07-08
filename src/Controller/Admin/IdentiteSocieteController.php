@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\IdentiteSociete;
-use App\Form\IdentiteSocieteType;
+use App\Form\Admin\IdentiteSocieteType;
 use App\Repository\IdentiteSocieteRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

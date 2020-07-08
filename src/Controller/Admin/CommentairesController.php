@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Commentaires;
-use App\Form\CommentairesType;
+use App\Form\Admin\CommentairesType;
 use App\Repository\CommentairesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/admin/commentaires")
  */
-class AdminCommentairesController extends AbstractController
+class CommentairesController extends AbstractController
 {
     /**
      * @Route("/", name="admin_commentaires_index", methods={"GET"})
