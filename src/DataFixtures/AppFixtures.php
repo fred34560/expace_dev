@@ -57,7 +57,9 @@ class AppFixtures extends Fixture
                  ->setCodePostal($faker->postcode)
                  ->setVille($faker->city)
                  ->setPays($faker->country)
-                 ->setSociete($faker->company);
+                 ->setSociete($faker->company)
+                 ->setCreatedAt($faker->dateTime('now'))
+                 ->setUpdatedAt($faker->dateTime('now'));
         
         $manager->persist($user);
         $users[] = $user;        
