@@ -1,0 +1,121 @@
+<ul class="vertical-nav-menu">
+    <li class="app-sidebar__heading">Navigation</li>
+    <!--
+    <li>
+        <a href="index.html">
+            <i class="metismenu-icon fas fa-tachometer-alt"></i>
+            Tableau de bord
+        </a>
+    </li>
+    -->
+    {# pour avoir un menu actif ont ajoute la class "mm-active" sur <li> #}
+    <!--
+    <li>
+        <a href="#">
+            <i class="metismenu-icon fab fa-blogger"></i>
+            Gestion du blog
+            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+        </a>
+        <ul>
+            <li>
+                <a href="{{path('admin_articles_index')}}">
+                    <i class="metismenu-icon"></i>
+                    Gérer les articles
+                </a>
+            </li>
+            <li>
+                <a href="{{path('admin_categories_index')}}">
+                    <i class="metismenu-icon"></i>
+                    Gérer les catégories
+                </a>
+            </li>
+            <li>
+                <a href="{{path('admin_commentaires_index')}}">
+                    <i class="metismenu-icon"></i>
+                    Gérer les commentaires
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a href="{{path('admin_users_index')}}">
+            <i class="metismenu-icon fas fa-users-cog"></i>
+            Gérer les utilisateurs
+        </a>
+    </li>
+    -->
+    <li>
+        <a href="#">
+            <i class="metismenu-icon fas fa-project-diagram"></i>
+            Gérer les projets
+            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+        </a>
+        <ul>
+            <li>
+                <a href="{{path('client_projets_new')}}">
+                    <i class="metismenu-icon"></i>
+                    Créer un projet
+                </a>
+            </li>
+            <li>
+                <a href="{{path('client_projets_index')}}">
+                    <i class="metismenu-icon"></i>
+                    Voir mes projets
+                </a>
+            </li>
+        </ul>
+    </li>
+    <!--
+    <li>
+        <a href="#">
+            <i class="metismenu-icon fas fa-cogs"></i>
+            Configuration
+            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+        </a>
+        <ul>
+            <li>
+                <a href="#">
+                    <i class="metismenu-icon"></i>
+                    Société
+                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                </a>
+                <ul>
+                    <li>
+                        <a href="{{ path('admin_identite_societe_new') }}">
+                            <i class="metismenu-icon"></i>
+                            Créer la société
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('admin_identite_societe_edit', {'id': '1'}) }}">
+                            <i class="metismenu-icon"></i>
+                            Editer la société
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a href="#">
+            <i class="metismenu-icon fas fa-landmark"></i>
+            Comptabilité
+            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+        </a>
+        <ul>
+            <li>
+                <a href="{{path('admin_devis_index')}}">
+                    <i class="metismenu-icon"></i>
+                    Gérer les devis
+                </a>
+            </li>
+            <li>
+                <a href="{{path('admin_factures_index')}}">
+                    <i class="metismenu-icon"></i>
+                    Gérer les factures
+                </a>
+            </li>
+        </ul>
+    </li>
+    -->
+</ul>
