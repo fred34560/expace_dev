@@ -28,6 +28,8 @@ class Users implements UserInterface, Serializable
      */
     private $id;
 
+    public $ancienPassword;
+
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      */
