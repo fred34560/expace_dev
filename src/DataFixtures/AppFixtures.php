@@ -9,6 +9,7 @@ use App\Entity\PostLike;
 use App\Entity\Categories;
 use App\Entity\CommentLike;
 use App\Entity\Commentaires;
+use App\Entity\Messages;
 use App\Entity\Projets;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -189,6 +190,24 @@ class AppFixtures extends Fixture
                        
 
                 $manager->persist($projet);
+            }
+
+            $message = new Messages();
+
+            for ($o=1; $o<=10; $o++) {
+                
+                $lu = [0, 1];
+
+                $message->setExpediteur($faker->randomElement($users))
+                        ->setDestinataire($faker->randomElement($users))
+                        ->setTitre($faker->sentence())
+                        ->setMessage('<p>' . join ('</p><p>', $faker->paragraphs(5)) . '</p>')
+                        ->setCreatedAt($faker->dateTime('now'))
+                        ->setLu($faker->randomElement($lu));
+
+                        //dd($message);
+
+                $manager->persist($message);
             }
 
         }

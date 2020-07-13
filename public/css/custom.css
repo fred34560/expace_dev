@@ -3,3 +3,6 @@
     width: 130px;
     background: url(/assets/images/logo-default-130x42.png);
 }
+.pointer {
+    cursor:pointer;
+}

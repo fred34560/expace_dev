@@ -1,0 +1,68 @@
+{% extends 'client/base.html.twig' %}
+
+{% block title %}Rédiger un message{% endblock %}
+
+{% block body %}
+
+        <div class="app-inner-layout">
+            <div class="app-inner-layout__wrapper">
+                <div class="app-inner-layout__content card">
+                    <div>
+                        <div class="app-inner-layout__top-pane">
+                            <div class="pane-left">
+                                <div class="mobile-app-menu-btn">
+                                    <button type="button" class="hamburger hamburger--elastic">
+                                        <span class="hamburger-box">
+                                            <span class="hamburger-inner"></span>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white">
+                            <div class="app-main__inner">
+            <div class="card mb-3">
+                <div class="card-header-tab card-header">
+                    <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+                        <i class="header-icon far fa-envelope mr-3 text-muted opacity-6"></i>
+                        {{ message.titre }}
+                    </div>
+                    
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="widget-content p-0">
+                                <div class="widget-content-wrapper">
+                                    <div class="widget-content-left mr-3">
+                                        <img width="42" class="rounded-circle" src="{{ message.expediteur.avatar }}" alt="">
+                                    </div>
+                                    <div class="widget-content-left">
+                                        <div class="widget-heading">
+                                            {{ message.expediteur.nom }} {{ message.expediteur.prenom }}<br>
+                                            {{ message.createdAt|date('d-m-Y H:i') }}
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 pt-5">
+                            {{ message.message|raw }}
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+
+
+        </div>
+                        </div>
+                    </div>
+                </div>
+                {% include "partials/navigation_messages.html.twig" %}
+            </div>
+        </div>
+{% endblock %}

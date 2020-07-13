@@ -89,10 +89,13 @@
                         {# On affiche les infos utilisateur #}
                         <div class="widget-content-left  ml-3 header-user-info">
                             <div class="widget-heading">
-                                Husson Frédéric
+                                {{ app.user.nom }} {{ app.user.prenom }}
                             </div>
                             <div class="widget-subheading">
-                                Développeur web
+                                {% if app.user.societe is defined %}
+                                    {{ app.user.societe }}
+                                {% endif %}
+                                
                             </div>
                         </div>
 

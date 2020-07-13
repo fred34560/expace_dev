@@ -187,6 +187,11 @@ class Users implements UserInterface, Serializable
      */
     private $updatedAt;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Messages::class, mappedBy="expediteur")
+     */
+    private $messages;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
@@ -196,6 +201,7 @@ class Users implements UserInterface, Serializable
         $this->projets = new ArrayCollection();
         $this->notifications = new ArrayCollection();
         $this->factures = new ArrayCollection();
+        $this->messages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -690,6 +696,37 @@ class Users implements UserInterface, Serializable
     public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Messages[]
+     */
+    public function getMessages(): Collection
+    {
+        return $this->messages;
+    }
+
+    public function addMessage(Messages $message): self
+    {
+        if (!$this->messages->contains($message)) {
+            $this->messages[] = $message;
+            $message->setExpediteur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessage(Messages $message): self
+    {
+        if ($this->messages->contains($message)) {
+            $this->messages->removeElement($message);
+            // set the owning side to null (unless already changed)
+            if ($message->getExpediteur() === $this) {
+                $message->setExpediteur(null);
+            }
+        }
 
         return $this;
     }

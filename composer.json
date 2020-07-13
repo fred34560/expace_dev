@@ -7,6 +7,7 @@
         "ext-iconv": "*",
         "expace/pdf-invoice": "^1.6@dev",
         "friendsofsymfony/ckeditor-bundle": "^2.2",
+        "knplabs/knp-paginator-bundle": "^5.2",
         "sensio/framework-extra-bundle": "^5.1",
         "stof/doctrine-extensions-bundle": "^1.4",
         "symfony/asset": "4.4.*",
