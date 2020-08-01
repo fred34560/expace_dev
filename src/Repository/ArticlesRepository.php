@@ -47,4 +47,22 @@ class ArticlesRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function getNb() {
+  
+        return $this->createQueryBuilder('i')
+                    ->select('COUNT(i)')
+                    ->getQuery()
+                    ->getSingleScalarResult();
+    }
+
+    public function getDerniersPosts($nbre)
+    {
+        return $this->createQueryBuilder('a')
+            ->orderBy('a.createdAt', 'DESC')
+            ->setMaxResults($nbre)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

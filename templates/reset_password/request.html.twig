@@ -1,15 +1,42 @@
-{% extends 'base.html.twig' %}
+{% extends 'security/base.html.twig' %}
 
-{% block title %}Reset your password{% endblock %}
+{% block title %}Réinitialiser le mot de passe{% endblock %}
 
 {% block body %}
-    {% for flashError in app.flashes('reset_password_error') %}
-        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
-    {% endfor %}
-    <h1>Reset your password</h1>
 
-    {{ form_start(requestForm) }}
-        {{ form_row(requestForm.email) }}
+    <div class="mx-auto app-login-box col-sm-12 col-md-8 col-lg-6">
+        <img class="pb-5" src="/images/logo-default-130x42.png" alt="">
+        <h4>
+            <div>Mot de passe oublié ?</div>
+            <span>Utilisez le formulaire ci-dessous pour le récupérer.</span>
+        </h4>
+        <div>
+            {% for flashError in app.flashes('reset_password_error') %}
+                <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+            {% endfor %}
+            {{ form_start(requestForm) }}
+                <div class="form-row">
+                    <div class="col-md-12">
+                            {{ form_row(requestForm.email) }}
+                    </div>
+                </div>
+                <div class="mt-4 d-flex align-items-center">
+                    <h6 class="mb-0">
+                        <a href="{{ path('app_register') }}" class="text-primary">Connectez-vous à votre compte</a>
+                    </h6>
+                    <div class="ml-auto">
+                        <button class="btn btn-primary btn-lg">Réinitialiser</button>
+                    </div>
+                </div>
+            {{ form_end(requestForm) }}
+        </div>
+    </div>
+
+{#
+    
+
+    
+        
         <div>
             <small>
                 Enter your email address and we we will send you a
@@ -18,5 +45,6 @@
         </div>
 
         <button class="btn btn-primary">Send password reset email</button>
-    {{ form_end(requestForm) }}
+    
+#}
 {% endblock %}

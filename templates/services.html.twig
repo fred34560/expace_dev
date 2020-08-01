@@ -1,0 +1,255 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!-- Breadcrumbs-->
+    <section class="breadcrumbs-custom">
+        <div class="breadcrumbs-custom__aside bg-image context-dark" style="background-image: url(images/bg-image-1-1920x238.jpg);">
+            <div class="container">
+                <h2 class="breadcrumbs-custom__title">Nos services</h2>
+            </div>
+        </div>
+        <div class="breadcrumbs-custom__main bg-gray-light">
+            <div class="container">
+                <ul class="breadcrumbs-custom__path">
+                    <li><a href="{{path('home')}}">Accueil</a></li>
+                    <li class="active">Services</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+        <!-- General Info-->
+        <section class="section section-lg bg-white">
+            <div class="container">
+                <div class="row row-50 justify-content-md-center justify-content-lg-start">
+                    <div class="col-md-10 col-lg-6">
+                        <div class="image-custom-1"><img src="images/about-1-601x359.jpg" alt="" width="601" height="359"/>
+                        </div>
+                    </div>
+                    <div class="col-md-10 col-lg-6">
+                        <div class="box-inset-1">
+                            <!-- Bootstrap tabs-->
+                            <div class="tabs-custom tabs-horizontal tabs-corporate tabs-corporate_left" id="tabs-about">
+                                <!-- Nav tabs-->
+                                <ul class="nav nav-tabs">
+                                    <li class="nav-item"><a class="nav-link active" href="#tabs-about-1" data-toggle="tab">Analyse</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#tabs-about-2" data-toggle="tab">Conception</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#tabs-about-3" data-toggle="tab">Livraison</a></li>
+                                </ul>
+                                <!-- Tab panes-->
+                                <div class="tab-content">
+                                    <div class="tab-pane fade show active" id="tabs-about-1">
+                                        <h4>Analyse du besoin client</h4>
+                                        <p>Dans un premier temps les équipe d'Expace web development vont prendre conaissance des besoins du client, ainsi que récolter les premiers éléments disponible, logo, charte graphique s'ils existent déjà.</p>
+                                        <p>Suite à cette approche nous seront en mesure de vous apporter une première esquisse de votre futur application web. Cette première approche pourras être modifié tout au long du projet dans la limite du raisonable.</p>
+                                    </div>
+                                    <div class="tab-pane fade" id="tabs-about-2">
+                                        <h4>Conception de votre application</h4>
+                                        <p>Une fois la première étape franchi et validé par le client nos équipes seront en mesure de démarrer la phase de programmation de votre application tout en respectant le cachier des charges.</p>
+                                        <p>Pendant cette étape votre application seras testé régulièrement afin de répondre à toutes exigences en terme de sécurité, de qualité et tout en respectant les normes en vigueurs.</p>
+                                    </div>
+                                    <div class="tab-pane fade" id="tabs-about-3">
+                                        <h4>Mise en production</h4>
+                                        <p>Une fois votre application finalisé et les testes passés avec succès, votre application pouras être mise en production soit sur nos serveurs, ou bien sur celui de votre choix. Dans ce second cas de figure nous n'intervenons pas en cas de problême émanant de votre serveur.</p>
+                                        <p>Nous formerons ensuite vos équipe à la gestion de ce nouvel outil et suivrons son référencement tout au long du contrat de gestion. Pendant cette période nous pourront également être amené à regler certains bugs qui pourrait apparaitre dans votre application.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team-->
+        <section class="section section-lg bg-gray-lighter text-center">
+            <div class="container">
+                <h2>Notre équipe</h2>
+                <div class="row row-50">
+                    <div class="col-md-6 col-lg-4">
+                        <!-- Card Creative-->
+                        <!--
+                        <article class="card-creative">
+                            <div class="card-creative__inner">
+                                <figure class="card-creative__media"><img src="images/team-1-230x211.jpg" alt="" width="230" height="211"/>
+                                </figure>
+                                <p class="card-creative__title">Ann Peterson</p>
+                                <p class="card-creative__subtitle">UI Designer</p>
+                                <div class="card-creative__divider"></div>
+                                <div class="card-creative__aside">
+                                    <ul class="list-inline list-inline-md">
+                                        <li><a class="icon icon-xs icon-darker icon-style-brand fa fa-facebook" href="#"></a></li>
+                                        <li><a class="icon icon-xs icon-darker icon-style-brand fa fa-twitter" href="#"></a></li>
+                                        <li><a class="icon icon-xs icon-darker icon-style-brand fa fa-google-plus" href="#"></a></li>
+                                        <li><a class="icon icon-xs icon-darker icon-style-brand fa fa-pinterest-p" href="#"></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </article>
+                        -->
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                    <!-- Card Creative-->
+                        <article class="card-creative">
+                            <div class="card-creative__inner">
+                                <figure class="card-creative__media"><img src="images/moi2.jpg" alt="" width="230" height="211"/>
+                                </figure>
+                                <p class="card-creative__title">Husson Frédéric</p>
+                                <p class="card-creative__subtitle">Développeur et fondateur</p>
+                                <div class="card-creative__divider"></div>
+                                <div class="card-creative__aside">
+                                    <ul class="list-inline list-inline-md">
+                                        <li><a class="icon icon-xs icon-darker icon-style-brand fa fa-facebook" href="#"></a></li>
+                                        <li><a class="icon icon-xs icon-darker icon-style-brand fa fa-twitter" href="#"></a></li>
+                                        <li><a class="icon icon-xs icon-darker icon-style-brand fa fa-google-plus" href="#"></a></li>
+                                        <li><a class="icon icon-xs icon-darker icon-style-brand fa fa-pinterest-p" href="#"></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                    <!-- Card Creative-->
+                        <!--
+                        <article class="card-creative">
+                            <div class="card-creative__inner">
+                                <figure class="card-creative__media"><img src="images/team-3-230x211.jpg" alt="" width="230" height="211"/>
+                                </figure>
+                                <p class="card-creative__title">Emily Rose</p>
+                                <p class="card-creative__subtitle">Head of Support</p>
+                                <div class="card-creative__divider"></div>
+                                <div class="card-creative__aside">
+                                    <ul class="list-inline list-inline-md">
+                                        <li><a class="icon icon-xs icon-darker icon-style-brand fa fa-facebook" href="#"></a></li>
+                                        <li><a class="icon icon-xs icon-darker icon-style-brand fa fa-twitter" href="#"></a></li>
+                                        <li><a class="icon icon-xs icon-darker icon-style-brand fa fa-google-plus" href="#"></a></li>
+                                        <li><a class="icon icon-xs icon-darker icon-style-brand fa fa-pinterest-p" href="#"></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </article>
+                        -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Facts-->
+        <section class="section parallax-container bg-gray-darker" data-parallax-img="images/bg-image-2-1920x1304.jpg">
+            <div class="parallax-content">
+                <div class="section-lg text-center">
+                    <div class="container">
+                        <h2>Quelques faits</h2>
+                        <p class="text-style-1">Plus de 100 000 applications développées</p>
+                        <div class="row row-30 offset-top-1">
+                            <div class="col-sm-6 col-md-3">
+                                <!-- Box counter-->
+                                <article class="box-counter">
+                                    <div class="box-counter__main">
+                                        <div class="counter">900</div>
+                                    </div>
+                                    <div class="box-counter__divider"></div>
+                                    <p class="box-counter__title">Applications</p>
+                                </article>
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <!-- Box counter-->
+                                <article class="box-counter"> 
+                                    <div class="box-counter__main">
+                                        <div class="counter">27</div>
+                                    </div>
+                                    <div class="box-counter__divider"></div>
+                                    <p class="box-counter__title">Récompenses remportées</p>
+                                </article>
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <!-- Box counter-->
+                                <article class="box-counter">
+                                    <div class="box-counter__main">
+                                        <div class="counter">20</div><span class="small">k</span>
+                                    </div>
+                                    <div class="box-counter__divider"></div>
+                                    <p class="box-counter__title">Heures de codage</p>
+                                </article>
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <!-- Box counter-->
+                                <article class="box-counter">
+                                    <div class="box-counter__main">
+                                        <div class="counter">99</div><span class="small small_top">%</span>
+                                    </div>
+                                    <div class="box-counter__divider"></div>
+                                    <p class="box-counter__title">Clients satisfaits</p>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Clients-->
+        <section class="section section-md bg-gray-light text-center">
+            <div class="container">
+                <h2>Our Clients</h2>
+                    <!-- Owl Carousel -->
+                    <div class="owl-outer-navigation-wrap owl-carousel_nav-modern wow fadeIn">
+                        <div class="owl-carousel quote-creative-carousel" data-items="1" data-lg-items="2" data-dots="true" data-nav="true" data-stage-padding="0" data-loop="true" data-margin="20" data-mouse-drag="false" data-navigation-container="#owl-carousel-nav" data-dots-each="1">
+                            <div class="item">
+                                <!-- Quote Creative-->
+                                <article class="quote-creative"> 
+                                    <div class="quote-creative__header">
+                                        <div class="quote-creative__media"><img src="images/client-1-112x99.jpg" alt="" width="112" height="99"/>
+                                    </div>
+                                    <div class="quote-creative__info">
+                                        <p class="quote-creative__title">Michael Johnson</p>
+                                        <p class="quote-creative__subtitle">Regular Client</p>
+                                    </div>
+                                </div>
+                                <div class="quote-creative__main">
+                                    <div class="quote-creative__mark">
+                                        <svg version="1.1" x="0px" y="0px" width="39px" height="21px" viewbox="0 0 39 21">
+                                            <polyline points="8.955,21 0,14.031 0.002,0.001 15.984,0.001 15.984,13.984 8.969,14.016 "></polyline>
+                                            <polyline points="31.97,20.999 23.016,14.031 23.018,0.001 39,0.001 39,13.984 31.984,14.015 "></polyline>
+                                        </svg>
+                                    </div>
+                                    <div class="quote-creative__main-text">
+                                        <p>Expace offers a high caliber of resources skilled in Microsoft Azure .NET, mobile and Quality Assurance. They became our true business partners over the past three years of our cooperation.</p>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="item">
+                            <!-- Quote Creative-->
+                            <article class="quote-creative">
+                                <div class="quote-creative__header">
+                                    <div class="quote-creative__media"><img src="images/client-2-112x99.jpg" alt="" width="112" height="99"/>
+                                </div>
+                                <div class="quote-creative__info">
+                                    <p class="quote-creative__title">Rachel Adams</p>
+                                    <p class="quote-creative__subtitle">Regular Client</p>
+                                </div>
+                            </div>
+                            <div class="quote-creative__main">
+                                <div class="quote-creative__mark">
+                                    <svg version="1.1" x="0px" y="0px" width="39px" height="21px" viewbox="0 0 39 21">
+                                        <polyline points="8.955,21 0,14.031 0.002,0.001 15.984,0.001 15.984,13.984 8.969,14.016 "></polyline>
+                                        <polyline points="31.97,20.999 23.016,14.031 23.018,0.001 39,0.001 39,13.984 31.984,14.015 "></polyline>
+                                    </svg>
+                                </div>
+                                <div class="quote-creative__main-text">
+                                    <p>Expace is a highly skilled and uniquely capable firm with multitudes of talent on-board. We have collaborated on a number of diverse projects that have been a great success.</p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <div class="owl-outer-navigation" id="owl-carousel-nav"></div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+{% endblock %}

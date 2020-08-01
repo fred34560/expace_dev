@@ -1,12 +1,67 @@
 {{ form_start(form) }}
+
     <div class="row">
-        <div class="col-6">{{ form_row(form.nom) }}</div>
-        <div class="col-6">{{ form_row(form.prenom) }}</div>
-        <div class="col-12">{{ form_row(form.adresse) }}</div>
-        <div class="col-4">{{ form_row(form.codePostal) }}</div>
-        <div class="col-4">{{ form_row(form.ville) }}</div>
-        <div class="col-4">{{ form_row(form.pays) }}</div>
-        <div class="col-6">{{ form_row(form.email) }}</div>
+        <div class="col-6">
+            <div class="form-group">
+                <label for="profil_nom">Nom</label>
+                {{ form_widget(form.nom) }}
+                <div class="form-error">
+                    {{ form_errors(form.nom) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label for="profil_prenom">Prénom</label>
+                {{ form_widget(form.prenom) }}
+                <div class="form-error">
+                    {{ form_errors(form.prenom) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-12"><div class="form-group">
+                <label for="profil_adresse">Adresse</label>
+                {{ form_widget(form.adresse) }}
+                <div class="form-error">
+                    {{ form_errors(form.adresse) }}
+                </div>
+            </div></div>
+        <div class="col-4">
+            <div class="form-group">
+                <label for="profil_codePostal">Code postal</label>
+                {{ form_widget(form.codePostal) }}
+                <div class="form-error">
+                    {{ form_errors(form.codePostal) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label for="profil_ville">Ville</label>
+                {{ form_widget(form.ville) }}
+                <div class="form-error">
+                    {{ form_errors(form.ville) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label for="profil_pays">Pays</label>
+                {{ form_widget(form.pays) }}
+                <div class="form-error">
+                    {{ form_errors(form.pays) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label for="profil_email">Email</label>
+                {{ form_widget(form.email) }}
+                <div class="form-error">
+                    {{ form_errors(form.email) }}
+                </div>
+            </div>
+        </div>
         <div class="col-6">{{ form_row(form.societe) }}</div>
         <div class="col-6">{{ form_row(form.imageFile) }}</div>
         <div class="col-6">{{ form_row(form.telephone) }}</div>

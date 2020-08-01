@@ -1,12 +1,40 @@
-{% extends 'base.html.twig' %}
+{% extends 'security/base.html.twig' %}
 
 {% block title %}Reset your password{% endblock %}
 
 {% block body %}
-    <h1>Reset your password</h1>
 
-    {{ form_start(resetForm) }}
-        {{ form_row(resetForm.plainPassword) }}
-        <button class="btn btn-primary">Reset password</button>
-    {{ form_end(resetForm) }}
+    <div class="mx-auto app-login-box col-sm-12 col-md-8 col-lg-6">
+        <img class="pb-5" src="/images/logo-default-130x42.png" alt="">
+        <h4>
+            <div>Mot de passe oublié ?</div>
+            <span>Utilisez le formulaire ci-dessous pour le récupérer.</span>
+        </h4>
+        <div>
+            {{ form_start(resetForm) }}
+                <div class="form-row">
+                    <div class="col-md-12">
+                            {{ form_row(resetForm.plainPassword.first) }}
+                    </div>
+                    <div class="col-md-12">
+                            {{ form_row(resetForm.plainPassword.second) }}
+                    </div>
+                </div>
+                <div class="mt-4 d-flex align-items-center">
+                    <h6 class="mb-0">
+                        <a href="{{ path('app_register') }}" class="text-primary">Connectez-vous à votre compte</a>
+                    </h6>
+                    <div class="ml-auto">
+                        <button class="btn btn-primary btn-lg">Modifier</button>
+                    </div>
+                </div>
+            {{ form_end(resetForm) }}
+        </div>
+    </div>
+
+
+
+
+    
+    
 {% endblock %}

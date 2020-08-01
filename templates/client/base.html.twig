@@ -205,6 +205,29 @@
         
 </div>
 <script type="text/javascript" src="/assets/scripts/main.05d4006abd021b7a7c58.js"></script>
+
+<script>
+
+var path = window.location.pathname;
+
+if (path != '/client/profil/edit') {
+    
+    var nom = '{{ app.user.nom }}';
+    var prenom = '{{ app.user.prenom }}';
+    var adresse = '{{ app.user.adresse }}';
+    var codePostal = '{{ app.user.codePostal }}';
+    var ville = '{{ app.user.ville }}';
+    var pays = '{{ app.user.pays }}';
+
+    if (!nom || !prenom || !adresse || !codePostal || !ville || !pays) {
+        document.location.href="/client/profil/edit";
+        //console.log(window.location.pathname);
+    }
+
+}
+
+</script>
+
 {% block javascripts %}{% endblock %}    
 </body>
 </html>

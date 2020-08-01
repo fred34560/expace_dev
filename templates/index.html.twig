@@ -1,0 +1,283 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!-- Swiper-->
+    <section class="section swiper-container swiper-slider swiper_style-1 swiper_height-1 swiper-controls-classic section-overlay" data-loop="true" data-autoplay-timeout="10" data-simulate-touch="false">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide bg-image-dark" data-slide-bg="/images/slider-classic-slide-1-1920x710.jpg">
+                <div class="swiper-slide-caption">
+                    <div class="container">
+                        <h1 data-caption-animate="fadeInUpSmall">
+                            <span class="d-block font-weight-light">Professionnel et de haute qualité</span>
+                            <span class="d-block font-weight-bold">Services de développement Web</span>
+                        </h1>
+                        <div class="col-12 offset-top-60" data-caption-animate="fadeInUpSmall">
+                            <a class="button button-lg button-primary button-ujarak" href="{{ path('home_services') }}">En savoir plus</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide bg-image-dark" data-slide-bg="/images/slider-classic-slide-2-1920x710.jpg">
+                <div class="swiper-slide-caption">
+                    <div class="container">
+                        <h1 data-caption-animate="fadeInUpSmall">
+                            <span class="d-block font-weight-light">Équipe qualifiée de</span>
+                            <span class="d-block font-weight-bold">Programmeurs et développeurs</span>
+                        </h1>
+                        <div class="col-12 offset-top-60" data-caption-animate="fadeInUpSmall">
+                        <a class="button button-lg button-primary button-ujarak" href="{{ path('home_services') }}">En savoir plus</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </section>
+
+    <!-- Cloud Solutions-->
+    <section class="section section-md bg-white text-center">
+        <div class="container">
+            <h2>Nos Services</h2>
+            <div class="row row-30 justify-content-md-center">
+                <div class="col-md-6 col-lg-4">
+                    <!-- Box Chloe-->
+                    <article class="box-chloe box-chloe_primary">
+                        <div class="box-chloe__icon linearicons-cog"></div>
+                        <div class="box-chloe__main">
+                            <h4 class="box-chloe__title">Applications personnalisées</h4>
+                            <p>Nous développons des applications personnalisées parfaitement conçues pour servir les processus uniques de votre entreprise.</p><a class="button button-sm button-default button-ujarak" href="services.html">View Details</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <!-- Box Chloe-->
+                    <article class="box-chloe box-chloe_primary">
+                        <div class="box-chloe__icon linearicons-pencil-ruler2"></div>
+                        <div class="box-chloe__main">
+                            <h4 class="box-chloe__title">Développement d'applications Web</h4>
+                            <p>Développement d'applications Web personnalisées et externalisées avec des performances fiables et une expérience utilisateur sans faille.</p><a class="button button-sm button-default button-ujarak" href="services.html">View Details</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <!-- Box Chloe-->
+                    <article class="box-chloe box-chloe_primary">
+                        <div class="box-chloe__icon linearicons-lock"></div>
+                        <div class="box-chloe__main">
+                            <h4 class="box-chloe__title">Sécurité des applications</h4>
+                            <p>Expace intègre des solutions de sécurité uniques dans chacune de ses applications et produits afin que vos données soient toujours sécurisées.</p><a class="button button-sm button-default button-ujarak" href="services.html">View Details</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Why Choose Us-->
+    <section class="section section-sm bg-white text-center">
+        <div class="container">
+            <h2>Pourquoi nous choisir </h2>
+            <div class="row row-30 wow fadeIn">
+                <div class="col-md-6 col-lg-4">
+                    <!-- Box Alice-->
+                    <article class="box-alice">
+                        <div class="box-alice__inner">
+                            <div class="box-alice__aside">
+                                <div class="box-alice__icon-outer"><span class="box-alice__icon linearicons-thumbs-up"></span></div>
+                            </div>
+                            <div class="box-alice__main">
+                                <h5 class="box-alice__title">Approche individuelle</h5>
+                                <p>Notre approche des clients nous permet de créer des applications uniques qui répondent à vos besoins.</p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <!-- Box Alice-->
+                    <article class="box-alice">
+                        <div class="box-alice__inner">
+                            <div class="box-alice__aside">
+                                <div class="box-alice__icon-outer"><span class="box-alice__icon linearicons-profile"></span></div>
+                            </div>
+                            <div class="box-alice__main">
+                                <h5 class="box-alice__title">Employés qualifiés</h5>
+                                <p>Nous employons les meilleurs concepteurs et développeurs d'interfaces utilisateur avec un potentiel et une expérience créative élevés.</p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <!-- Box Alice-->
+                    <article class="box-alice">
+                        <div class="box-alice__inner">
+                            <div class="box-alice__aside">
+                                <div class="box-alice__icon-outer"><span class="box-alice__icon linearicons-credit-card"></span></div>
+                            </div>
+                            <div class="box-alice__main">
+                                <h5 class="box-alice__title">Divers modes de paiement</h5>
+                                <p>Nous proposons une large gamme de méthodes de paiement, cartes de crédit paypal et virement bancaire</p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <!-- Facts-->
+    <section class="section parallax-container bg-gray-darker" data-parallax-img="images/bg-image-2-1920x1304.jpg">
+        <div class="parallax-content">
+            <div class="section-lg text-center text-sm-left">
+                <div class="container">
+                    <div class="row row-50 flex-md-row-reverse justify-content-md-between align-items-center align-items-lg-start">
+                        <div class="col-md-5 wow fadeInRightSmall">
+                            <div class="box-width-3 box-centered">
+                                <h2>Quelques faits</h2>
+                                <p class="text-style-1">Plus de 100 000 applications développées</p>
+                                <a class="button button-lg button-primary button-ujarak" href="about.html">En savoir plus</a>
+                            </div>
+                        </div>
+                        <div class="col-md-7 col-lg-6 wow fadeInLeftSmall">
+                            <div class="row row-style-1">
+                                <div class="col-sm-6">
+                                    <div class="col-inner">
+                                        <!-- Box counter-->
+                                        <article class="box-counter box-counter_modern">
+                                            <div class="box-counter__main">
+                                                <div class="box-counter__icon linearicons-layers"></div><span>900</span>
+                                            </div>
+                                            <p class="box-counter__title">Applications</p>
+                                        </article>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="col-inner">
+                                        <!-- Box counter-->
+                                        <article class="box-counter box-counter_modern">
+                                            <div class="box-counter__main">
+                                                <div class="box-counter__icon linearicons-trophy2"></div>
+                                                <div class="counter">27</div>
+                                            </div>
+                                            <p class="box-counter__title">récompenses gagnées</p>
+                                        </article>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="col-inner">
+                                        <!-- Box counter-->
+                                        <article class="box-counter box-counter_modern">
+                                            <div class="box-counter__main">
+                                                <div class="box-counter__icon linearicons-watch"></div>
+                                                <div class="counter">20</div><span class="small">k</span>
+                                            </div>
+                                            <p class="box-counter__title">Heures de codage</p>
+                                        </article>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="col-inner">
+                                        <!-- Box counter-->
+                                        <article class="box-counter box-counter_modern">
+                                            <div class="box-counter__main">
+                                                <div class="box-counter__icon linearicons-heart"></div>
+                                                <div class="counter">99</div><span class="small small_top">%</span>
+                                            </div>
+                                            <p class="box-counter__title">Clients satisfaits</p>
+                                        </article>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Our Clients-->
+    <section class="section section-md bg-gray-light text-center">
+        <div class="container">
+            <h2>Our Clients</h2>
+                <!-- Owl Carousel -->
+                <div class="owl-outer-navigation-wrap owl-carousel_nav-modern wow fadeIn">
+                    <div class="owl-carousel quote-creative-carousel" data-items="1" data-lg-items="2" data-dots="true" data-nav="true" data-stage-padding="0" data-loop="true" data-margin="20" data-mouse-drag="false" data-navigation-container="#owl-carousel-nav" data-dots-each="1">
+                        <div class="item">
+                            <!-- Quote Creative-->
+                            <article class="quote-creative"> 
+                                <div class="quote-creative__header">
+                                    <div class="quote-creative__media"><img src="images/client-1-112x99.jpg" alt="" width="112" height="99"/>
+                                </div>
+                                <div class="quote-creative__info">
+                                    <p class="quote-creative__title">Michael Johnson</p>
+                                    <p class="quote-creative__subtitle">Regular Client</p>
+                                </div>
+                            </div>
+                            <div class="quote-creative__main">
+                                <div class="quote-creative__mark">
+                                    <svg version="1.1" x="0px" y="0px" width="39px" height="21px" viewbox="0 0 39 21">
+                                        <polyline points="8.955,21 0,14.031 0.002,0.001 15.984,0.001 15.984,13.984 8.969,14.016 "></polyline>
+                                        <polyline points="31.97,20.999 23.016,14.031 23.018,0.001 39,0.001 39,13.984 31.984,14.015 "></polyline>
+                                    </svg>
+                                </div>
+                                <div class="quote-creative__main-text">
+                                    <p>Expace offers a high caliber of resources skilled in Microsoft Azure .NET, mobile and Quality Assurance. They became our true business partners over the past three years of our cooperation.</p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="item">
+                        <!-- Quote Creative-->
+                        <article class="quote-creative">
+                            <div class="quote-creative__header">
+                                <div class="quote-creative__media"><img src="images/client-2-112x99.jpg" alt="" width="112" height="99"/>
+                            </div>
+                            <div class="quote-creative__info">
+                                <p class="quote-creative__title">Rachel Adams</p>
+                                <p class="quote-creative__subtitle">Regular Client</p>
+                            </div>
+                        </div>
+                        <div class="quote-creative__main">
+                            <div class="quote-creative__mark">
+                                <svg version="1.1" x="0px" y="0px" width="39px" height="21px" viewbox="0 0 39 21">
+                                    <polyline points="8.955,21 0,14.031 0.002,0.001 15.984,0.001 15.984,13.984 8.969,14.016 "></polyline>
+                                    <polyline points="31.97,20.999 23.016,14.031 23.018,0.001 39,0.001 39,13.984 31.984,14.015 "></polyline>
+                                </svg>
+                            </div>
+                            <div class="quote-creative__main-text">
+                                <p>Expace is a highly skilled and uniquely capable firm with multitudes of talent on-board. We have collaborated on a number of diverse projects that have been a great success.</p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            <div class="owl-outer-navigation" id="owl-carousel-nav"></div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- Partners-->
+    <section class="section section-md bg-white text-center">
+        <div class="container">
+            <div class="row row-50 align-items-sm-center">
+                <div class="col-sm-6 col-md-3 wow fadeIn"><a class="link-image" href="#"><img src="images/brand-1-126x68.png" alt="" width="126" height="68"/></a></div>
+                <div class="col-sm-6 col-md-3 wow fadeIn"><a class="link-image" href="#"><img src="images/brand-2-126x100.png" alt="" width="126" height="100"/></a></div>
+                <div class="col-sm-6 col-md-3 wow fadeIn"><a class="link-image" href="#"><img src="images/brand-3-134x83.png" alt="" width="134" height="83"/></a></div>
+                <div class="col-sm-6 col-md-3 wow fadeIn"><a class="link-image" href="#"><img src="images/brand-4-138x55.png" alt="" width="138" height="55"/></a></div>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}

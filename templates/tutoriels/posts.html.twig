@@ -1,0 +1,365 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tutoriels{% endblock %}
+
+{% block body %}
+    <!-- Breadcrumbs-->
+    <section class="breadcrumbs-custom">
+        <div class="breadcrumbs-custom__aside bg-image context-dark" style="background-image: url(/images/bg-image-1-1920x238.jpg);">
+            <div class="container">
+                <h2 class="breadcrumbs-custom__title">Tutoriels</h2>
+            </div>
+        </div>
+        <div class="breadcrumbs-custom__main bg-gray-light">
+            <div class="container">
+                <ul class="breadcrumbs-custom__path">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li class="active">Tutoriels</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+        <!-- Blog post-->
+        <section class="section section-lg bg-white">
+            <div class="container">
+                <article class="blog-layout">
+                    <div class="blog-layout__main">
+                        <article class="post-single">
+                            <div class="post-single__header">
+                                <ul class="post-single__meta">
+                                    <li><span class="icon-primary mdi mdi-comment-outline"></span><a href="#">{{ article.commentaires|length }}</a></li>
+                                    <li>
+                                        {% if app.user and article.isLikedArticleByUser(app.user) %}
+                                            <span id= "get-like-article" class="icon-primary mdi mdi-thumb-up"></span>
+                                        {% else %}
+                                            <span id = "get-like-article" class="icon-primary mdi mdi-thumb-up-outline"></span>
+                                        {% endif %}
+                                        
+                                        <a class="nb-like-articles" href="#">{{article.postLikes|length}}</a>
+                                    </li>
+                                </ul>
+                                <ul class="post-single__meta">
+                                    <li><span class="icon mdi icon mdi mdi-account"></span><span>par</span><a href="#">{{ article.users.pseudo }}</a></li>
+                                </ul>
+                            </div>
+                            <div class="post-single__time-wrap">
+                                {% set mois = article.updatedAt|date("F") %}
+                                {% set jour = article.updatedAt|date("d") %}
+                                {% set annee = article.updatedAt|date("Y") %}
+                                <time class="post-single__time" datetime="{{annee}}"><span class="post-single__time-day">{{jour}}</span><span class="post-single__time-month">{{mois|trans}}</span></time>
+                            </div>
+                            <h4 class="post-single__title">{{ article.titre }}</h4>
+                            {{ article.contenu|raw }}
+                            <div class="post-single__footer">
+                                <div class="post-single__footer-inner">
+                                    <h5> <a href="">Partager cette publication</a> </h5>
+                                    <ul class="list-inline list-inline-xs">
+                                        <li><a class="icon icon-xs icon-gray-dark fa fa-facebook" href="#"></a></li>
+                                        <li><a class="icon icon-xs icon-gray-dark fa fa-twitter" href="#"></a></li>
+                                        <li><a class="icon icon-xs icon-gray-dark fa fa-google-plus" href="#"></a></li>
+                                        <li><a class="icon icon-xs icon-gray-dark fa fa-pinterest-p" href="#"></a></li>
+                                    </ul>
+                                    
+                                </div>
+                                    <div id="url-article-like" class="button button-sm button-icon button-icon-left button-primary button-ujarak">
+                                        <a class="js-article-like" style="color:#fff" href="{{ path('tutoriels_article_like', {'id': article.id}) }}">
+                                            {% if app.user and article.isLikedArticleByUser(app.user) %}
+                                            <span class="textLienArticle">Je n'aime plus</span> 
+                                            {% else %}
+                                            <span class="textLienArticle">J'aime cet article</span>     
+                                            {% endif %}
+                                            
+                                        </a> 
+                                    </div>
+                                    
+
+                            </div>
+                        </article>
+                        <div class="section-md section-collapse">
+                            <p class="custom-heading-line heading-8">Articles récents</p>
+                            <div class="row row-50">
+                                {% for articleRecent in articlesRecents %}
+                                    <div class="col-md-6">
+                                        <!-- Post Minimal-->
+                                        <article class="post-minimal"><a class="post-minimal__media" href="{{ path('tutoriels_article', {'slug': articleRecent.slug}) }}"><img class="post-minimal__image" src="{{articleRecent.featuredImage}}" alt="" width="368" height="293"/></a>
+                                            <h4 class="post-minimal__title"><a href="{{ path('tutoriels_article', {'slug': articleRecent.slug}) }}">{{articleRecent.titre}}</a></h4>
+                                            <ul class="post-minimal__meta">
+                                                <li><span class="icon mdi mdi-comment-outline"></span><a href="{{ path('tutoriels_article', {'slug': articleRecent.slug}) }}">{{ articleRecent.commentaires|length }}</a></li>
+                                                <li><span class="icon mdi mdi-thumb-up-outline"></span><a href="#">12</a></li>
+                                                <li><span class="icon mdi mdi-account"></span><span>par</span><a href="{{ path('tutoriels_article', {'slug': articleRecent.slug}) }}">{{ articleRecent.users.pseudo }}</a></li>
+                                            </ul>
+                                        </article>
+                                    </div>    
+                                {% endfor %}
+                                
+                        </div>
+                    </div>
+                    <div class="section-md section-collapse">
+                            <p class="custom-heading-line heading-8">Commentaires</p>
+                            {% for commentaire in article.commentaires %}
+                                
+                                    {% if commentaire.parentId == null %}
+                                <div class="comment-group">
+                                    <!-- Comment-->    
+                                    <article class="comment">
+                                        <div class="comment__figure"><img class="comment__image" src="{{commentaire.users.avatar}}" alt="" width="82" height="82"/>
+                                        </div>
+                                        <div class="comment__main">
+                                            <div class="comment__header">
+                                                {% set difference = date( "now" | date() ).diff(date(commentaire.createdAt)) %}
+                                                {% set leftDays = difference.days %}
+                                                {% set leftHours = difference.h %}
+                                                {% set leftYears = difference.y %}
+                                                {% set leftMinutes = difference.i %}
+                                                {% set leftSeconds = difference.s %}
+                                                
+                                                {% if leftYears > 0 %}
+                                                {% set difference = leftYears ~ " an(s)" %} 
+                                                {% elseif leftDays > 0 %}
+                                                {% set difference = leftDays ~ " jour(s)" %}
+                                                {% elseif leftHours > 0 %}
+                                                {% set difference = leftHours ~ " heure(s)" %} 
+                                                {% elseif leftMinutes > 0 %}
+                                                {% set difference = leftMinutes ~ " minute(s)" %} 
+                                                {% elseif leftSeconds > 0 %}
+                                                {% set difference = leftSeconds ~ " seconde(s)" %} 
+                                                {% endif %}
+                                                
+                                                
+                                                <h5 class="comment__title">{{ commentaire.users.pseudo }}</h5><span class="comment__time">Il y a {{ difference }}</span>
+                                            </div>
+                                            <div class="comment__text">
+                                                <p>{{ commentaire.contenu|raw }}</p>
+                                            </div>
+                                            <div class="comment__footer">
+                                                <ul class="comment__list">
+                                                    <li>
+                                                        <a class="comment__link js-comment-like" href="{{ path('tutoriels_commentaire_like', {'id': commentaire.id}) }}">
+                                                            {% if app.user and commentaire.isLikedCommentaireByUser(app.user) %}
+                                                                <span class="get-like-comment icon mdi mdi-thumb-up"></span>
+                                                            {% else %}
+                                                                <span class="get-like-comment icon mdi mdi-thumb-up-outline"></span>
+                                                            {% endif %}
+                                                            
+                                                            <span class="nb-like-comment">{{commentaire.commentLikes|length}}</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a id="{{ commentaire.id }}" class="repondre comment__link" href="{{ commentaire.id }}">
+                                                            <span class="icon mdi mdi-comment-outline"></span>
+                                                            <span>Répondre</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </article>
+                                    {% for reponse in commentaire.commentaires %}
+                                    <div class="comment-group">
+                                        <!-- Comment-->
+                                        <article class="comment">
+                                            <div class="comment__figure"><img class="comment__image" src="{{ reponse.users.avatar }}" alt="" width="82" height="82"/>
+                                            </div>
+                                            <div class="comment__main">
+                                                <div class="comment__header">
+                                                {% set difference = date( "now" | date() ).diff(date(reponse.createdAt)) %}
+                                                {% set leftDays = difference.days %}
+                                                {% set leftHours = difference.h %}
+                                                {% set leftYears = difference.y %}
+                                                {% set leftMinutes = difference.i %}
+                                                {% set leftSeconds = difference.s %}
+                                                
+                                                {% if leftYears > 0 %}
+                                                {% set difference = leftYears ~ " an(s)" %} 
+                                                {% elseif leftDays > 0 %}
+                                                {% set difference = leftDays ~ " jour(s)" %}
+                                                {% elseif leftHours > 0 %}
+                                                {% set difference = leftHours ~ " heure(s)" %} 
+                                                {% elseif leftMinutes > 0 %}
+                                                {% set difference = leftMinutes ~ " minute(s)" %} 
+                                                {% elseif leftSeconds > 0 %}
+                                                {% set difference = leftSeconds ~ " seconde(s)" %} 
+                                                {% endif %}
+                                                    <h5 class="comment__title">{{ reponse.users.pseudo }}</h5><span class="comment__time">Il y a {{ difference }}</span>
+                                                </div>
+                                                <div class="comment__text">
+                                                    <p>{{ reponse.contenu|raw }}</p>
+                                                </div>
+                                                <div class="comment__footer">
+                                                    <ul class="comment__list">
+                                                        <li>
+                                                            <a class="comment__link js-comment-like" href="{{ path('tutoriels_commentaire_like', {'id': reponse.id}) }}">
+                                                                {% if app.user and reponse.isLikedCommentaireByUser(app.user) %}
+                                                                    <span class="get-like-comment icon mdi mdi-thumb-up"></span>
+                                                                {% else %}
+                                                                    <span class="get-like-comment icon mdi mdi-thumb-up-outline"></span>
+                                                                {% endif %}
+                                                                
+                                                                <span class="nb-like-comment">{{reponse.commentLikes|length}}</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a id="{{ reponse.parentId.id }}" class="repondre comment__link" href="#">
+                                                                <span class="icon mdi mdi-comment-outline"></span>
+                                                                <span>Répondre</span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    </div>    
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+    
+                            {% endfor %}
+                            {% if app.user %}
+                                <div class="comment-box">
+                                    <div class="unit flex-md-row flex-column">
+                                            <div class="unit__left"><img class="comment-box__image" src="{{app.user.avatar}}" alt="" width="82" height="82"/>
+                                        
+                                        </div>
+                                        <div class="unit__body">
+                                            <p class="heading-8">{{app.user.pseudo}}</p>
+                                            {{ form_start(form, { 'attr': {'class': 'rd-mailform form_outline', 'data-form-output': 'form-output-global'} }) }}
+                                                <div class="form-wrap">
+                                                    {{ form_label(form.contenu, 'Write Your Comment...', {'label_attr': {'class': 'form-label'} }) }}
+                                                    <div class="form-errors pb-1">
+                                                        {{ form_errors(form.contenu) }}
+                                                    </div>
+                                                    {{ form_widget(form.contenu, { 'attr': {'class': 'form-input', 'data-constraints': '@Required'} }) }}
+                                                </div>
+                                                <div class="form-button">
+                                                    <button class="button button-lg button-primary button-ujarak" type="submit">Envoyer</button>
+                                                    <input id="parent_id" type="hidden" name="parent_id" value="">
+                                                </div>
+                                            {{ form_end(form) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            
+                        </div>
+                    </div>
+                    <div class="blog-layout__aside">
+                        {% include "partials/blog/recherche.html.twig" %}
+                        {% include "partials/blog/categories.html.twig" %}
+                        {% include "partials/blog/dernieres_publi.html.twig" %}
+                        {% include "partials/blog/pub.html.twig" %}
+                    </div>
+                </article>
+            </div>
+        </section>
+
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <script>
+        $(document).ready(function(){
+
+            $('.repondre').click(function(e) {
+                e.preventDefault();
+                $('html,body').animate({scrollTop: $(".comment-box").offset().top}, 'slow');
+
+                id = $(this).attr('id');
+                console.log(id);
+                $('#parent_id').val(id);
+            });  
+            
+            
+            $(".js-article-like").click(function(e){
+                e.preventDefault();
+                $('.snackbars').addClass("active");
+                $('.snackbars').html('<p><span class="icon text-middle fa fa-circle-o-notch fa-spin icon-xxs"></span><span>Veuillez patienter, chargement en cours...</span></p>');
+
+                url = $(".js-article-like").attr("href");
+     
+                $.ajax({
+                url : url,
+                type : 'GET',
+                success : function(resultat){
+                    //console.log(resultat);
+                    $('.nb-like-articles').text(resultat.likes);
+
+                    if (resultat.message == 'suppression') {
+                        $('#get-like-article').removeClass('mdi-thumb-up').addClass('mdi-thumb-up-outline');
+                        $('.textLienArticle').html('J\'aime cet article');
+                        
+                    }
+                    if (resultat.message == 'ajout'){
+                        $('#get-like-article').removeClass('mdi-thumb-up-outline').addClass('mdi-thumb-up');
+                        $('.textLienArticle').html('Je n\'aime plus');
+
+                    }
+
+
+                    $('.snackbars').removeClass("active");
+                    
+                },
+
+                error : function(resultat){
+                    
+                },
+
+                complete : function(resultat){
+                    
+                }
+
+                });
+   
+            });
+
+
+            $(".js-comment-like").click(function(e){
+                e.preventDefault();
+                $('.snackbars').addClass("active");
+                $('.snackbars').html('<p><span class="icon text-middle fa fa-circle-o-notch fa-spin icon-xxs"></span><span>Veuillez patienter, chargement en cours...</span></p>');
+
+                url = this.href;
+                icone = this.querySelector('span');
+                spanCount = this.querySelector('span.nb-like-comment');
+                
+
+     
+                $.ajax({
+                url : url,
+                type : 'GET',
+                success : function(resultat){
+                    console.log(resultat);
+                    $(spanCount).text(resultat.likes);
+
+                    if (icone.classList.contains('mdi-thumb-up-outline')) {
+                        icone.classList.replace('mdi-thumb-up-outline', 'mdi-thumb-up');
+                    }
+                    else {
+                        icone.classList.replace('mdi-thumb-up', 'mdi-thumb-up-outline');
+                    }
+
+
+
+                    $('.snackbars').removeClass("active");
+                    
+                },
+
+                error : function(resultat){
+                    
+                },
+
+                complete : function(resultat){
+                    
+                }
+
+                });
+   
+            });
+
+
+        });
+                   
+    </script>
+
+{% endblock %}
