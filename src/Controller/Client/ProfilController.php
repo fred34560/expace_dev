@@ -30,6 +30,11 @@ class ProfilController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash(
+                'success',
+                "Votre profil a été modifié avec succès !"
+            );
+
             return $this->redirectToRoute('client_profil_edit');
         }
 

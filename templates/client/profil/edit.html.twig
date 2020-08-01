@@ -21,9 +21,14 @@
                         <i class="header-icon fas fa-user-edit mr-3 text-muted opacity-6"></i>
                         Editer mes infos
                     </div>
+
+                    
+
+
                     
                 </div>
                 <div class="card-body">
+                    {% include "partials/flash.html.twig" %}
                     {{ include('client/profil/_form.html.twig', {'button_label': 'Modifier les infos'}) }}
                 </div>
                 

@@ -40,7 +40,7 @@
                         {% for projet in projets %}
                             <tr>
                                 <td>{{ projet.titre }}</td>
-                                <td>{{ projet.client.pseudo }}</td>
+                                <td>{{ projet.client.nom }} {{ projet.client.prenom }}</td>
                                 <td class="text-center">
                                     {% if projet.statut == 'ouverture' %}
                                     <div class="badge badge-warning" style="min-width:110px">Ouverture</div>

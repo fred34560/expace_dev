@@ -71,7 +71,6 @@ class ProjetsController extends AbstractController
 
             if ($form->isSubmitted() && $form->isValid()) {
 
-                dd($projet);
                 $this->getDoctrine()->getManager()->flush();
 
                 $this->addFlash(

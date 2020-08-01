@@ -45,7 +45,7 @@ class ProjetsType extends AbstractType
             */
             ->add('client', EntityType::class, [
                 'class' => Users::class,
-                'choice_label' => 'pseudo',
+                'choice_label' => 'nom',
                 'label' => 'Choisir le client',
                 'placeholder' => 'Sélectionnez une option...',
                 'attr' => ['class' => 'custom-select']
