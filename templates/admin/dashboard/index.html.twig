@@ -1,0 +1,277 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Hello DashboardController!{% endblock %}
+
+{% block body %}
+
+<div class="app-main__inner">
+    <div class="app-page-title">
+        <div class="page-title-wrapper">
+            <div class="page-title-heading">
+                <div>
+                    Dashboard
+                    <div class="page-title-subheading">Retrouvez ici vos statistiques et autres données</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {# Debut des statistiques générales #}
+    <div class="row">
+        
+        <div class="col-md-6 col-lg-3">
+            <div class="card mb-3 widget-content card-shadow-primary border-primary card-btm-border">
+                <div class="widget-content-wrapper">
+                    <div class="widget-content-left">
+                        <div class="widget-heading text-uppercase">Clients</div>
+                        <div class="widget-subheading">Nombre de clients</div>
+                    </div>
+                    <div class="widget-content-right">
+                        <div class="widget-numbers text-primary"><span>{{ users|length }}</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="card mb-3 widget-content card-shadow-danger border-danger card-btm-border">
+                <div class="widget-content-wrapper">
+                    <div class="widget-content-left">
+                        <div class="widget-heading text-uppercase">Projets</div>
+                        <div class="widget-subheading">Projets actuellement ouverts</div>
+                    </div>
+                    <div class="widget-content-right">
+                        <div class="widget-numbers text-danger"><span>{{ projets|length }}</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="card mb-3 widget-content card-shadow-warning border-warning card-btm-border">
+                <div class="widget-content-wrapper">
+                    <div class="widget-content-left">
+                        <div class="widget-heading text-uppercase">Devis</div>
+                        <div class="widget-subheading">Nombre de devis</div>
+                    </div>
+                    <div class="widget-content-right">
+                        <div class="widget-numbers text-warning"><span>{{ devis|length }}</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="card mb-3 widget-content card-shadow-success border-success card-btm-border">
+                <div class="widget-content-wrapper">
+                    <div class="widget-content-left">
+                        <div class="widget-heading text-uppercase">Factures</div>
+                        <div class="widget-subheading">Total de factures client</div>
+                    </div>
+                    <div class="widget-content-right">
+                        <div class="widget-numbers text-success"><span>{{ factures|length }}</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        
+    </div>
+    {# Fin des statistiques générales #}
+
+    {# Debut des statistiques factures et devis #}
+    <div class="row">
+        {# Affichage des derniers devis #}
+        <div class="col-md-12 col-lg-6 col-xl-6">
+            <div class="mb-3 card">
+                <div class="card-header-tab card-header-tab-animation card-header">
+                    <div class="card-header-title">
+                        <i class="header-icon lnr-apartment icon-gradient bg-love-kiss"> </i>
+                        Derniers devis
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active">
+                            <ul class="rm-list-borders rm-list-borders-scroll list-group list-group-flush">
+                                {% for devi in devis|slice(0, 5) %}
+                                    {% set tarifTotal = 0 %}
+                                        {% for service in devi.services %}
+                                            {% set tarifTotal = tarifTotal + service.tarif %}
+                                        {% endfor %}
+                                    <li class="list-group-item">
+                                        <div class="widget-content p-0">
+                                            <div class="widget-content-wrapper">
+                                                <div class="widget-content-left mr-3">
+                                                    <img width="42" class="rounded-circle" src="{{ devi.user.avatar }}" alt="">
+                                                </div>
+                                                <div class="widget-content-left">
+                                                    <div class="widget-heading">{{ devi.user.nom }} {{ devi.user.prenom }}</div>
+                                                    <div class="widget-subheading">{{ devi.user.societe }}</div>
+                                                </div>
+                                                <div class="widget-content-right">
+                                                    <div class="font-size-xlg text-muted">
+                                                        <span>{{ tarifTotal }} €</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        {# Affichage des dernières factures #}
+        <div class="col-md-12 col-lg-6 col-xl-6">
+            <div class="mb-3 card">
+                <div class="card-header-tab card-header-tab-animation card-header">
+                    <div class="card-header-title">
+                        <i class="header-icon lnr-apartment icon-gradient bg-love-kiss"> </i>
+                        Dernières factures
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active">
+                            <ul class="rm-list-borders rm-list-borders-scroll list-group list-group-flush">
+                                {% for facture in factures|slice(0, 5) %}
+                                    {% set tarifTotal = 0 %}
+                                        {% for service in facture.services %}
+                                            {% set tarifTotal = tarifTotal + service.tarif %}
+                                        {% endfor %}
+                                    <li class="list-group-item">
+                                        <div class="widget-content p-0">
+                                            <div class="widget-content-wrapper">
+                                                <div class="widget-content-left mr-3">
+                                                    <img width="42" class="rounded-circle" src="{{ facture.client.avatar }}" alt="">
+                                                </div>
+                                                <div class="widget-content-left">
+                                                    <div class="widget-heading">{{ facture.client.nom }} {{ facture.client.prenom }}</div>
+                                                    <div class="widget-subheading">{{ facture.client.societe }}</div>
+                                                </div>
+                                                <div class="widget-content-right">
+                                                    <div class="font-size-xlg text-muted">
+                                                        <span>{{ tarifTotal }} €</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    {# Fin des statistiques factures et devis #}
+
+    {# Debut des statistiques de developpement #}
+    <div class="card no-shadow bg-transparent no-border rm-borders mb-3">
+        <div class="card">
+            <div class="no-gutters row">
+                <div class="col-md-12 col-lg-6 col-xl-3">
+                    <div class="pt-0 pb-0 card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <div class="widget-content p-0">
+                                    <div class="widget-content-outer">
+                                        <div class="widget-content-wrapper">
+                                            <div class="widget-content-left">
+                                                <div class="widget-heading">Applications</div>
+                                                <div class="widget-subheading">Total des applications</div>
+                                            </div>
+                                            <div class="widget-content-right">
+                                                <div class="widget-numbers text-primary">1896</div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-6 col-xl-3">
+                    <div class="pt-0 pb-0 card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <div class="widget-content p-0">
+                                    <div class="widget-content-outer">
+                                        <div class="widget-content-wrapper">
+                                            <div class="widget-content-left">
+                                                <div class="widget-heading">Récompenses</div>
+                                                <div class="widget-subheading">Total des récompenses</div>
+                                            </div>
+                                            <div class="widget-content-right">
+                                                <div class="widget-numbers text-success">14</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-6 col-xl-3">
+                    <div class="pt-0 pb-0 card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <div class="widget-content p-0">
+                                    <div class="widget-content-outer">
+                                        <div class="widget-content-wrapper">
+                                            <div class="widget-content-left">
+                                                <div class="widget-heading">Codage</div>
+                                                <div class="widget-subheading">Heure de codage</div>
+                                            </div>
+                                            <div class="widget-content-right">
+                                                <div class="widget-numbers text-danger">
+                                                    527
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-6 col-xl-3">
+                    <div class="pt-0 pb-0 card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <div class="widget-content p-0">
+                                    <div class="widget-content-outer">
+                                        <div class="widget-content-wrapper">
+                                            <div class="widget-content-left">
+                                                <div class="widget-heading">Satisfaction</div>
+                                                <div class="widget-subheading">Clients satisfaits</div>
+                                            </div>
+                                            <div class="widget-content-right">
+                                                <div class="widget-numbers text-focus">682</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {# Fin des statistiques de developpement #}
+                    
+
+</div>
+
+
+{% endblock %}

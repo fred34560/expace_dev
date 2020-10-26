@@ -192,6 +192,11 @@ class Users implements UserInterface, Serializable
      */
     private $messages;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Devis::class, mappedBy="user")
+     */
+    private $devis;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
@@ -202,6 +207,7 @@ class Users implements UserInterface, Serializable
         $this->notifications = new ArrayCollection();
         $this->factures = new ArrayCollection();
         $this->messages = new ArrayCollection();
+        $this->devis = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -725,6 +731,37 @@ class Users implements UserInterface, Serializable
             // set the owning side to null (unless already changed)
             if ($message->getExpediteur() === $this) {
                 $message->setExpediteur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Devis[]
+     */
+    public function getDevis(): Collection
+    {
+        return $this->devis;
+    }
+
+    public function addDevi(Devis $devi): self
+    {
+        if (!$this->devis->contains($devi)) {
+            $this->devis[] = $devi;
+            $devi->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDevi(Devis $devi): self
+    {
+        if ($this->devis->contains($devi)) {
+            $this->devis->removeElement($devi);
+            // set the owning side to null (unless already changed)
+            if ($devi->getUser() === $this) {
+                $devi->setUser(null);
             }
         }
 

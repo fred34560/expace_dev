@@ -151,6 +151,8 @@ class ProjetsController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            //dd($projet->getClient()->getId());
+
             $client = [
                 'nom' => $projet->getClient()->getNom(),
                 'prenom' => $projet->getClient()->getPrenom(),
@@ -167,6 +169,7 @@ class ProjetsController extends AbstractController
                   ->setClient($client)
                   ->setProjet($projet->getTitre())
                   ->setStatut('en_attente')
+                  ->setUser($projet->getClient())
                   ;
             //dd($devis);
             $manager->persist($devis);

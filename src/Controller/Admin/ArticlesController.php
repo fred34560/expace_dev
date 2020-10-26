@@ -89,8 +89,8 @@ class ArticlesController extends AbstractController
     public function delete(Request $request, Articles $article): Response
     {
         $entityManager = $this->getDoctrine()->getManager();
-        //$entityManager->remove($article);
-        //$entityManager->flush();
+        $entityManager->remove($article);
+        $entityManager->flush();
 
         $this->addFlash(
             'warning',

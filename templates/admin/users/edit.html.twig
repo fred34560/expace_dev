@@ -36,3 +36,30 @@
     </div>
 
 {% endblock %}
+
+{% block javascripts %}
+<script src="https://cdn.jsdelivr.net/npm/places.js@1.16.5"></script>
+<script>
+(function() {
+  var placesAutocomplete = places({
+    appId: 'pl5E0AERLP0E',
+    apiKey: 'ec874759e7f8ed96f0c8747a7ff29131',
+    container: document.querySelector('#users_adresse'),
+    templates: {
+      value: function(suggestion) {
+        return suggestion.name;
+      }
+    }
+  }).configure({
+    type: 'address'
+  });
+  placesAutocomplete.on('change', function resultSelected(e) {
+    //document.querySelector('#form-address2').value = e.suggestion.administrative || '';
+    document.querySelector('#users_ville').value = e.suggestion.city || '';
+    document.querySelector('#users_codePostal').value = e.suggestion.postcode || '';
+    document.querySelector('#users_pays').value = e.suggestion.country || '';
+  });
+})();
+</script>
+{% endblock %}
+

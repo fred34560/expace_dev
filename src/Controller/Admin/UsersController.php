@@ -42,7 +42,7 @@ class UsersController extends AbstractController
             $plainPassword = $user->getEmail();
             $plainPassword .= $user->getPseudo();
             
-           $encoded = $encoder->encodePassword($user, $plainPassword);
+            $encoded = $encoder->encodePassword($user, $plainPassword);
             $user->setIsVerified(1);
             $user->setPassword($encoded);
             $entityManager->persist($user);
