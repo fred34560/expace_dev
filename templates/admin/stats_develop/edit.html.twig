@@ -1,7 +1,6 @@
 {% extends 'admin/base.html.twig' %}
-{% form_theme form 'bootstrap_4_layout.html.twig' %}
 
-{% block title %}Créer un projet{% endblock %}
+{% block title %}Edit StatsDevelop{% endblock %}
 
 {% block body %}
 
@@ -26,7 +25,7 @@
                     
                 </div>
                 <div class="card-body">
-                    {{ include('admin/projets/_form_create.html.twig', {'button_label': 'Créer le nouveau projet'}) }}
+                    {{ include('admin/stats_develop/_form.html.twig', {'button_label': 'Créer le nouveau projet'}) }}
                 </div>
                 
             </div>
@@ -35,6 +34,5 @@
 
         </div>
 </div>
-
 
 {% endblock %}

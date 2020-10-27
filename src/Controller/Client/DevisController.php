@@ -1,48 +1,36 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller\Client;
 
 use App\Entity\Devis;
-use App\Form\Admin\DevisType;
 use App\Repository\DevisRepository;
 use Konekt\PdfInvoice\InvoicePrinter;
 use App\Repository\IdentiteSocieteRepository;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException as ExceptionAccessDeniedException;
 
 /**
- * @Route("/admin/devis")
+ * @Route("/client/devis")
  */
 class DevisController extends AbstractController
 {
     /**
-     * @Route("/", name="admin_devis_index", methods={"GET"})
+     * @Route("/", name="client_devis_index", methods={"GET"})
      */
     public function index(DevisRepository $devisRepository): Response
     {
-        return $this->render('admin/devis/index.html.twig', [
-            'devis' => $devisRepository->findAll(),
+
+        return $this->render('client/devis/index.html.twig', [ 
+            'devis' => $devisRepository->findBy(['user' => $this->getUser()]),
         ]);
     }
 
     /**
-     * @Route("/delete/{id}", name="admin_devis_delete")
-     */
-    public function delete(Request $request, Devis $devi): Response
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->remove($devi);
-        $entityManager->flush();
-
-        return $this->redirectToRoute('admin_devis_index');
-    }
-
-    /**
-     * Permet d'afficher une facture
+     * Permet d'afficher un devis
      * 
-     * @Route("/{id}/view", name="admin_devis_view")
+     * @Route("/{id}/voir-le-devis", name="client_devis_view")
      *
      * @param Devis $devi
      * @return void
@@ -74,17 +62,23 @@ class DevisController extends AbstractController
         $ape_presta = utf8_decode('APE: ' . $societe->getApe());
         $vide = html_entity_decode('&nbsp;');
 
+
+
+        if ($this->getUser()->getId() !== $devi->getUser()->getId()) {
+            throw new ExceptionAccessDeniedException();
+        }
+
         
 
-        $nom_client = strtoupper($devi->getClient()['nom']);
-        $prenom_client = mb_strtolower($devi->getClient()['prenom']);
+        $nom_client = strtoupper($devi->getUser()->getNom());
+        $prenom_client = mb_strtolower($devi->getUser()->getPrenom());
         $prenom_client = ucwords($prenom_client);
         $client = $nom_client. ' '  .$prenom_client;
-        $adresse_client = $devi->getClient()['adresse'];
-        $postalCode_client = $devi->getClient()['codePostal'];
-        $ville_client = $devi->getClient()['ville'];
+        $adresse_client = $devi->getUser()->getAdresse();
+        $postalCode_client = $devi->getUser()->getCodePostal();
+        $ville_client = $devi->getUser()->getVille();
         $adresse2 = $postalCode_client. ' ' .$ville_client;
-        $pays_client = strtoupper($devi->getClient()['pays']);
+        $pays_client = strtoupper($devi->getUser()->getPays());
 
 
         if (strlen($devi->getId()) == 1) {
@@ -124,65 +118,65 @@ class DevisController extends AbstractController
             $rcs_presta,
             $siren_presta,
             $ape_presta    
-         ]);
+        ]);
 
-         if ($devi->getClient()['societe'] === null) {
-             $invoice->setTo([
-                $client,
-                $adresse_client,
-                $adresse2,
-                $pays_client,
-            ]);
-         }
-         else {
+        if ($devi->getUser()->getSociete() === null) {
             $invoice->setTo([
-                strtoupper($devi->getClient()['societe']),
                 $client,
                 $adresse_client,
                 $adresse2,
                 $pays_client,
             ]);
-         }
+        }
+        else {
+            $invoice->setTo([
+                strtoupper($devi->getUser()->getSociete()),
+                $client,
+                $adresse_client,
+                $adresse2,
+                $pays_client,
+            ]);
+        }
 
         
 
 
-             $tableau = $devi->getServices();
-             $tarif_total = null;
+        $tableau = $devi->getServices();
+        $tarif_total = null;
 
-             foreach($tableau as $values){
+        foreach($tableau as $values){
                 
-                $invoice->addItem(
-                    $values['type'], 
-                    $values['info'], 
-                    $values['quantite'], 
-                    0, 
-                    $values['tarif'], 
-                    0, 
-                    $values['tarif']*$values['quantite']
-                );
+            $invoice->addItem(
+                $values['type'], 
+                $values['info'], 
+                $values['quantite'], 
+                0, 
+                $values['tarif'], 
+                0, 
+                $values['tarif']*$values['quantite']
+            );
                 //$invoice->addItem("AMD Athlon X2DC-7450","2.4GHz/1GB/160GB/SMP-DVD/VB",6,0,580,0,3480);
             
                
-               $tarif_total += $values['tarif']*$values['quantite'];
+            $tarif_total += $values['tarif']*$values['quantite'];
                //
-              }
+        }
 
   
-  $invoice->addTotal("Accompte",0);
-  $invoice->addTotal("Total", $tarif_total);
-  $invoice->addTotal("Reste due", $tarif_total, true);
+        $invoice->addTotal("Total", $tarif_total);
+        $invoice->addTotal("Reste due", $tarif_total, true);
   
   
   
         $invoice->addTitle("Informations");
-$invoice->addParagraph("TVA non applicable art. 293B du CGI");
+        $invoice->addParagraph("TVA non applicable art. 293B du CGI");
   
-  $invoice->setFooternote($societe->getSociete());
+        $invoice->setFooternote($societe->getSociete());
   
-  $invoice->render($fact. '.pdf','I'); 
+        
+        $invoice->render($fact. '.pdf','I'); 
 
-  return;
+        return;
 
   /* I => Display on browser, D => Force Download, F => local path save, S => return document as string */
     }
