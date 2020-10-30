@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Contact;
 use App\Entity\Articles;
 use App\Form\ContactType;
+use App\Entity\StatsDevelop;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
@@ -28,7 +29,10 @@ class HomeController extends AbstractController
         $derniersArticles = $this->getDoctrine()->getRepository(Articles::class)->getDerniersPosts(2);
 
         return $this->render('index.html.twig', [
-            'derniersArticles' => $derniersArticles
+            'derniersArticles' => $derniersArticles,
+            'applications' => $this->getDoctrine()->getRepository(StatsDevelop::class)->nbreApp(),
+            'dureeCode' => $this->getDoctrine()->getRepository(StatsDevelop::class)->dureeCode(),
+            'recompense' => $this->getDoctrine()->getRepository(StatsDevelop::class)->nbreRecompense()
         ]);
     }
 

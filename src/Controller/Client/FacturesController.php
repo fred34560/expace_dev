@@ -2,49 +2,52 @@
 
 namespace App\Controller\Client;
 
-use App\Entity\Devis;
-use App\Repository\DevisRepository;
+use App\Entity\Factures;
 use Konekt\PdfInvoice\InvoicePrinter;
+use App\Repository\FacturesRepository;
 use App\Repository\IdentiteSocieteRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException as ExceptionAccessDeniedException;
 
+
 /**
- * @Route("/client/devis")
+ * @Route("/client/factures")
  */
-class DevisController extends AbstractController
+class FacturesController extends AbstractController
 {
     /**
-     * @Route("/", name="client_devis_index", methods={"GET"})
+     * @Route("/", name="client_factures_index")
      */
-    public function index(DevisRepository $devisRepository): Response
+    public function index(FacturesRepository $facturesRepository): Response
     {
-
-        return $this->render('client/devis/index.html.twig', [ 
-            'devis' => $devisRepository->findBy(['client' => $this->getUser()]),
+        return $this->render('client/factures/index.html.twig', [ 
+            'factures' => $facturesRepository->findBy(['client' => $this->getUser()]),
         ]);
     }
 
     /**
-     * Permet d'afficher un devis
+     * Permet d'afficher une facture
      * 
-     * @Route("/{id}/voir-le-devis", name="client_devis_view")
+     * @Route("/{id}/view", name="client_factures_view")
      *
-     * @param Devis $devi
+     * @param Factures $facture
      * @return void
      */
-    public function view(Devis $devi, IdentiteSocieteRepository $info_societe) {
+    public function view(Factures $factures, IdentiteSocieteRepository $info_societe) {
 
-                
+        if ($this->getUser()->getId() !== $factures->getClient()->getId()) {
+            throw new ExceptionAccessDeniedException();
+        }
+        
         $societe = $info_societe->findOneBy(['id' => '1']);
 
 
         setlocale(LC_TIME, 'fr','fr_FR','fr_FR@euro','fr_FR.utf8','fr-FR','fra');
         
 
-        $invoice = new InvoicePrinter('A4', '€', 'devis_fr');
+        $invoice = new InvoicePrinter('A4', '€', 'factures_fr');
 
         
 
@@ -63,39 +66,31 @@ class DevisController extends AbstractController
         $ape_presta = utf8_decode('APE: ' . $societe->getApe());
         $vide = html_entity_decode('&nbsp;');
 
-
-
-        if ($this->getUser()->getId() !== $devi->getClient()->getId()) {
-            throw new ExceptionAccessDeniedException();
-        }
-
-        
-
-        $nom_client = strtoupper($devi->getClient()->getNom());
-        $prenom_client = mb_strtolower($devi->getClient()->getPrenom());
+        $nom_client = strtoupper($factures->getClient()->getNom());
+        $prenom_client = mb_strtolower($factures->getClient()->getPrenom());
         $prenom_client = ucwords($prenom_client);
         $client = $nom_client. ' '  .$prenom_client;
-        $adresse_client = $devi->getClient()->getAdresse();
-        $postalCode_client = $devi->getClient()->getCodePostal();
-        $ville_client = $devi->getClient()->getVille();
+        $adresse_client = $factures->getClient()->getAdresse();
+        $postalCode_client = $factures->getClient()->getCodePostal();
+        $ville_client = $factures->getClient()->getVille();
         $adresse2 = $postalCode_client. ' ' .$ville_client;
-        $pays_client = strtoupper($devi->getClient()->getPays());
+        $pays_client = strtoupper($factures->getClient()->getPays());
 
 
-        if (strlen($devi->getId()) == 1) {
-            $fact = 'DEV0000' .$devi->getId();
+        if (strlen($factures->getId()) == 1) {
+            $fact = 'FA0000' .$factures->getId();
         }
-        elseif (strlen($devi->getId()) == 2) {
-            $fact = 'DEV000' .$devi->getId();
+        elseif (strlen($factures->getId()) == 2) {
+            $fact = 'FA000' .$factures->getId();
         }
-        elseif (strlen($devi->getId()) == 3) {
-            $fact = 'DEV00' .$devi->getId();
+        elseif (strlen($factures->getId()) == 3) {
+            $fact = 'FA00' .$factures->getId();
         }
-        elseif (strlen($devi->getId()) == 4) {
-            $fact = 'DEV0' .$devi->getId();
+        elseif (strlen($factures->getId()) == 4) {
+            $fact = 'FA0' .$factures->getId();
         }
-        elseif (strlen($devi->getId()) == 5) {
-            $fact = 'DEV' .$devi->getId();
+        elseif (strlen($factures->getId()) == 5) {
+            $fact = 'FA' .$factures->getId();
         }
 
 
@@ -103,11 +98,10 @@ class DevisController extends AbstractController
         /* Header settings */
         $invoice->setLogo("images/logo_doc.png");   //logo image path
         $invoice->setColor("#2780e3");      // pdf color scheme
-        $invoice->setType("Devis");    // Invoice Type
+        $invoice->setType("Facture");    // Invoice Type
         $invoice->setReference($fact);   // Reference
-        $invoice->setDate(strftime("%d %B %Y", $devi->getCreatedAt()));   //Billing Date
-        $invoice->setDue(strftime("%d %B %Y", $devi->getCreatedAt() + 2592000));    // Due Date
-        
+        $invoice->setDate(strftime("%d %B %Y", $factures->getCreatedAt()));   //Billing Date
+        $invoice->setDue(strftime("%d %B %Y", $factures->getCreatedAt() + 604800));    // Due Date
         
         $invoice->setFrom([
             $full_nom_presta,
@@ -121,7 +115,7 @@ class DevisController extends AbstractController
             $ape_presta    
         ]);
 
-        if ($devi->getClient()->getSociete() === null) {
+        if ($factures->getClient()->getSociete() === null) {
             $invoice->setTo([
                 $client,
                 $adresse_client,
@@ -131,7 +125,7 @@ class DevisController extends AbstractController
         }
         else {
             $invoice->setTo([
-                strtoupper($devi->getClient()->getSociete()),
+                strtoupper($factures->getClient()->getSociete()),
                 $client,
                 $adresse_client,
                 $adresse2,
@@ -142,7 +136,7 @@ class DevisController extends AbstractController
         
 
 
-        $tableau = $devi->getServices();
+        $tableau = $factures->getServices();
         $tarif_total = null;
 
         foreach($tableau as $values){
@@ -156,7 +150,7 @@ class DevisController extends AbstractController
                 0, 
                 $values['tarif']*$values['quantite']
             );
-                //$invoice->addItem("AMD Athlon X2DC-7450","2.4GHz/1GB/160GB/SMP-DVD/VB",6,0,580,0,3480);
+            //$invoice->addItem("AMD Athlon X2DC-7450","2.4GHz/1GB/160GB/SMP-DVD/VB",6,0,580,0,3480);
             
                
             $tarif_total += $values['tarif']*$values['quantite'];
@@ -164,6 +158,7 @@ class DevisController extends AbstractController
         }
 
   
+        $invoice->addTotal("Accompte",0);
         $invoice->addTotal("Total", $tarif_total);
         $invoice->addTotal("Reste due", $tarif_total, true);
   
@@ -174,12 +169,10 @@ class DevisController extends AbstractController
   
         $invoice->setFooternote($societe->getSociete());
   
-        
         $invoice->render($fact. '.pdf','I'); 
 
         return;
 
-  /* I => Display on browser, D => Force Download, F => local path save, S => return document as string */
+        /* I => Display on browser, D => Force Download, F => local path save, S => return document as string */
     }
-
 }

@@ -1,8 +1,8 @@
 {
-  "useSmtp": false,
+  "useSmtp": true,
   "host": "stmp.gmail.com",
   "port": 465,
-  "username": "fredy6786@gmail.vom",
+  "username": "fredy6786@gmail.com",
   "password": "laura14111990",
   "recipientEmail": "mega-services@hotmail.fr"
 }

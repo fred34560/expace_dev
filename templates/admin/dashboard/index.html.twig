@@ -104,11 +104,11 @@
                                         <div class="widget-content p-0">
                                             <div class="widget-content-wrapper">
                                                 <div class="widget-content-left mr-3">
-                                                    <img width="42" class="rounded-circle" src="{{ devi.user.avatar }}" alt="">
+                                                    <img width="42" class="rounded-circle" src="{{ devi.client.avatar }}" alt="">
                                                 </div>
                                                 <div class="widget-content-left">
-                                                    <div class="widget-heading">{{ devi.user.nom }} {{ devi.user.prenom }}</div>
-                                                    <div class="widget-subheading">{{ devi.user.societe }}</div>
+                                                    <div class="widget-heading">{{ devi.client.nom }} {{ devi.client.prenom }}</div>
+                                                    <div class="widget-subheading">{{ devi.client.societe }}</div>
                                                 </div>
                                                 <div class="widget-content-right">
                                                     <div class="font-size-xlg text-muted">
@@ -190,7 +190,7 @@
                                                 <div class="widget-subheading">Total des applications</div>
                                             </div>
                                             <div class="widget-content-right">
-                                                <div class="widget-numbers text-primary">1896</div>
+                                                <div class="widget-numbers text-primary">{{ applications }}</div>
                                             </div>
                                         </div>
                                         
@@ -212,7 +212,7 @@
                                                 <div class="widget-subheading">Total des récompenses</div>
                                             </div>
                                             <div class="widget-content-right">
-                                                <div class="widget-numbers text-success">14</div>
+                                                <div class="widget-numbers text-success">{{ recompense }}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -233,9 +233,7 @@
                                                 <div class="widget-subheading">Heure de codage</div>
                                             </div>
                                             <div class="widget-content-right">
-                                                <div class="widget-numbers text-danger">
-                                                    527
-                                                </div>
+                                                <div class="widget-numbers text-danger">{{ dureeCode }}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -256,7 +254,7 @@
                                                 <div class="widget-subheading">Clients satisfaits</div>
                                             </div>
                                             <div class="widget-content-right">
-                                                <div class="widget-numbers text-focus">682</div>
+                                                <div class="widget-numbers text-focus">a faire</div>
                                             </div>
                                         </div>
                                     </div>

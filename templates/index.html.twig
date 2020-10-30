@@ -140,9 +140,9 @@
                 <div class="container">
                     <div class="row row-50 flex-md-row-reverse justify-content-md-between align-items-center align-items-lg-start">
                         <div class="col-md-5 wow fadeInRightSmall">
-                            <div class="box-width-3 box-centered">
+                            <div class="box-width-4 box-centered">
                                 <h2>Quelques faits</h2>
-                                <p class="text-style-1">Plus de 100 000 applications développées</p>
+                                <p class="text-style-1">{# Plus de #} {{ applications }} applications développées</p>
                                 <a class="button button-lg button-primary button-ujarak" href="{{ path('home_services') }}">En savoir plus</a>
                             </div>
                         </div>
@@ -153,7 +153,7 @@
                                         <!-- Box counter-->
                                         <article class="box-counter box-counter_modern">
                                             <div class="box-counter__main">
-                                                <div class="box-counter__icon linearicons-layers"></div><span>900</span>
+                                                <div class="box-counter__icon linearicons-layers"></div><span>{{ applications }}</span>
                                             </div>
                                             <p class="box-counter__title">Applications</p>
                                         </article>
@@ -165,7 +165,7 @@
                                         <article class="box-counter box-counter_modern">
                                             <div class="box-counter__main">
                                                 <div class="box-counter__icon linearicons-trophy2"></div>
-                                                <div class="counter">27</div>
+                                                <div class="counter">{{ recompense }}</div>
                                             </div>
                                             <p class="box-counter__title">récompenses gagnées</p>
                                         </article>
@@ -177,7 +177,7 @@
                                         <article class="box-counter box-counter_modern">
                                             <div class="box-counter__main">
                                                 <div class="box-counter__icon linearicons-watch"></div>
-                                                <div class="counter">20</div><span class="small">k</span>
+                                                <div class="counter">{{ dureeCode / 1000 }}</div><span class="small">k</span>
                                             </div>
                                             <p class="box-counter__title">Heures de codage</p>
                                         </article>
@@ -208,11 +208,11 @@
     <!-- Our Clients-->
     <section class="section section-md bg-gray-light text-center">
         <div class="container">
-            <h2>Our Clients</h2>
+            <h2>Nos clients</h2>
                 <!-- Owl Carousel -->
                 <div class="owl-outer-navigation-wrap owl-carousel_nav-modern wow fadeIn">
                     <div class="owl-carousel quote-creative-carousel" data-items="1" data-lg-items="2" data-dots="true" data-nav="true" data-stage-padding="0" data-loop="true" data-margin="20" data-mouse-drag="false" data-navigation-container="#owl-carousel-nav" data-dots-each="1">
-                        <div class="item">
+                        <div class="item"> 
                             <!-- Quote Creative-->
                             <article class="quote-creative"> 
                                 <div class="quote-creative__header">

@@ -193,9 +193,14 @@ class Users implements UserInterface, Serializable
     private $messages;
 
     /**
-     * @ORM\OneToMany(targetEntity=Devis::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Devis::class, mappedBy="client")
      */
     private $devis;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Messages::class, mappedBy="client")
+     */
+    private $messagerie;
 
     public function __construct()
     {
@@ -208,6 +213,7 @@ class Users implements UserInterface, Serializable
         $this->factures = new ArrayCollection();
         $this->messages = new ArrayCollection();
         $this->devis = new ArrayCollection();
+        $this->messagerie = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -749,7 +755,7 @@ class Users implements UserInterface, Serializable
     {
         if (!$this->devis->contains($devi)) {
             $this->devis[] = $devi;
-            $devi->setUser($this);
+            $devi->setClient($this);
         }
 
         return $this;
@@ -760,11 +766,43 @@ class Users implements UserInterface, Serializable
         if ($this->devis->contains($devi)) {
             $this->devis->removeElement($devi);
             // set the owning side to null (unless already changed)
-            if ($devi->getUser() === $this) {
-                $devi->setUser(null);
+            if ($devi->getClient() === $this) {
+                $devi->setClient(null);
             }
         }
 
         return $this;
     }
+
+    /**
+     * @return Collection|Messages[]
+     */
+    public function getMessagerie(): Collection
+    {
+        return $this->messagerie;
+    }
+
+    public function addMessagerie(Messages $messagerie): self
+    {
+        if (!$this->messagerie->contains($messagerie)) {
+            $this->messagerie[] = $messagerie;
+            $messagerie->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessagerie(Messages $messagerie): self
+    {
+        if ($this->messagerie->contains($messagerie)) {
+            $this->messagerie->removeElement($messagerie);
+            // set the owning side to null (unless already changed)
+            if ($messagerie->getClient() === $this) {
+                $messagerie->setClient(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

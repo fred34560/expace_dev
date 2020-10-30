@@ -45,6 +45,18 @@
     </li>
     -->
     <li>
+        <a href="{{ path('home') }}">
+            <i class="metismenu-icon fas fa-home"></i>
+            Retour à l'accueil
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('tutoriels_home') }}">
+            <i class="metismenu-icon fab fa-chrome"></i>
+            Voir le portfolio
+        </a>
+    </li>
+    <li>
         <a href="#">
             <i class="metismenu-icon fas fa-users-cog"></i>
             Gérer mon profil
@@ -66,25 +78,10 @@
         </ul>
     </li>
     <li>
-        <a href="#">
+        <a href="{{path('client_projets_index')}}">
             <i class="metismenu-icon fas fa-project-diagram"></i>
             Gérer les projets
-            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
         </a>
-        <ul>
-            <li>
-                <a href="{{path('client_projets_new')}}">
-                    <i class="metismenu-icon"></i>
-                    Créer un projet
-                </a>
-            </li>
-            <li>
-                <a href="{{path('client_projets_index')}}">
-                    <i class="metismenu-icon"></i>
-                    Voir mes projets
-                </a>
-            </li>
-        </ul>
     </li>
     <li>
         <a href="{{ path('client_messages_recu') }}">
@@ -112,6 +109,12 @@
                 </a>
             </li>
         </ul>
+    </li>
+    <li>
+        <a href="">
+            <i class="metismenu-icon fas fa-award"></i>
+            Mes témoignages
+        </a>
     </li>
     <!--
     <li>

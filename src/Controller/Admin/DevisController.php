@@ -76,15 +76,15 @@ class DevisController extends AbstractController
 
         
 
-        $nom_client = strtoupper($devi->getClient()['nom']);
-        $prenom_client = mb_strtolower($devi->getClient()['prenom']);
+        $nom_client = strtoupper($devi->getClient()->getNom());
+        $prenom_client = mb_strtolower($devi->getClient()->getPrenom());
         $prenom_client = ucwords($prenom_client);
         $client = $nom_client. ' '  .$prenom_client;
-        $adresse_client = $devi->getClient()['adresse'];
-        $postalCode_client = $devi->getClient()['codePostal'];
-        $ville_client = $devi->getClient()['ville'];
+        $adresse_client = $devi->getClient()->getAdresse();
+        $postalCode_client = $devi->getClient()->getCodePostal();
+        $ville_client = $devi->getClient()->getVille();
         $adresse2 = $postalCode_client. ' ' .$ville_client;
-        $pays_client = strtoupper($devi->getClient()['pays']);
+        $pays_client = strtoupper($devi->getClient()->getPays());
 
 
         if (strlen($devi->getId()) == 1) {
@@ -126,7 +126,7 @@ class DevisController extends AbstractController
             $ape_presta    
          ]);
 
-         if ($devi->getClient()['societe'] === null) {
+         if ($devi->getClient()->getSociete() === null) {
              $invoice->setTo([
                 $client,
                 $adresse_client,
@@ -136,7 +136,7 @@ class DevisController extends AbstractController
          }
          else {
             $invoice->setTo([
-                strtoupper($devi->getClient()['societe']),
+                strtoupper($devi->getClient()->getSociete()),
                 $client,
                 $adresse_client,
                 $adresse2,

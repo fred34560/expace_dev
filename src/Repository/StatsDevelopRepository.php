@@ -47,4 +47,28 @@ class StatsDevelopRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function dureeCode()
+    {
+        return $this->createQueryBuilder('c')
+            ->select('SUM(c.Duree) as dureeTotal')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    public function nbreApp() {
+  
+        return $this->createQueryBuilder('i')
+                    ->select('COUNT(i)')
+                    ->getQuery()
+                    ->getSingleScalarResult(); 
+    }
+    public function nbreRecompense() {
+  
+        return $this->createQueryBuilder('j')
+                    ->andWhere('j.recompense = 1')
+                    ->select('COUNT(j)')
+                    ->getQuery()
+                    ->getSingleScalarResult(); 
+    }
 }

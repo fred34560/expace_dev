@@ -20,11 +20,6 @@ class Devis
     private $id;
 
     /**
-     * @ORM\Column(type="array")
-     */
-    private $client = [];
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $projet;
@@ -48,23 +43,11 @@ class Devis
      * @ORM\ManyToOne(targetEntity=Users::class, inversedBy="devis")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $user;
+    private $client;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getClient(): ?array
-    {
-        return $this->client;
-    }
-
-    public function setClient(array $client): self
-    {
-        $this->client = $client;
-
-        return $this;
     }
 
     public function getProjet(): ?string
@@ -115,15 +98,16 @@ class Devis
         return $this;
     }
 
-    public function getUser(): ?Users
+    public function getClient(): ?Users
     {
-        return $this->user;
+        return $this->client;
     }
 
-    public function setUser(?Users $user): self
+    public function setClient(?Users $client): self
     {
-        $this->user = $user;
+        $this->client = $client;
 
         return $this;
     }
+
 }

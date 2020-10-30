@@ -51,6 +51,11 @@ class Messages
      */
     private $destinataire;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Users::class, inversedBy="messagerie")
+     */
+    private $client;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -124,6 +129,18 @@ class Messages
     public function setDestinataire(?Users $destinataire): self
     {
         $this->destinataire = $destinataire;
+
+        return $this;
+    }
+
+    public function getClient(): ?Users
+    {
+        return $this->client;
+    }
+
+    public function setClient(?Users $client): self
+    {
+        $this->client = $client;
 
         return $this;
     }
