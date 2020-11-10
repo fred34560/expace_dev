@@ -1,0 +1,39 @@
+<section class="section section-md bg-gray-light text-center">
+    <div class="container">
+        <h2>Nos clients</h2>
+        <!-- Owl Carousel -->
+        <div class="owl-outer-navigation-wrap owl-carousel_nav-modern wow fadeIn">
+            <div class="owl-carousel quote-creative-carousel" data-items="1" data-lg-items="2" data-dots="true" data-nav="true" data-stage-padding="0" data-loop="true" data-margin="20" data-mouse-drag="false" data-navigation-container="#owl-carousel-nav" data-dots-each="1">
+                {% for temoignage in temoignages %}
+                    <div class="item"> 
+                        <!-- Quote Creative-->
+                        <article class="quote-creative"> 
+                            <div class="quote-creative__header">
+                                <div class="quote-creative__media"><img src="{{ temoignage.client.avatar }}" alt="" width="112" height="99"/></div>
+                                <div class="quote-creative__info">
+                                    <p class="quote-creative__title" style="text-transform: capitalize">{{ temoignage.client.nom }} {{ temoignage.client.prenom }}</p>
+                                    <p class="quote-creative__subtitle" style="text-transform: capitalize">{{ temoignage.client.societe }}</p>
+                                </div>
+                            </div>
+                            <div class="quote-creative__main">
+                                <div class="quote-creative__mark">
+                                    <svg version="1.1" x="0px" y="0px" width="39px" height="21px" viewbox="0 0 39 21">
+                                        <polyline points="8.955,21 0,14.031 0.002,0.001 15.984,0.001 15.984,13.984 8.969,14.016 "></polyline>
+                                        <polyline points="31.97,20.999 23.016,14.031 23.018,0.001 39,0.001 39,13.984 31.984,14.015 "></polyline>
+                                    </svg>
+                                </div>
+                                <div class="quote-creative__main-text" style="min-height:100px">
+                                    <p>{{ temoignage.message }}</p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                {% endfor %}
+                
+                
+
+            </div>
+            <div class="owl-outer-navigation" id="owl-carousel-nav"></div>
+        </div>
+    </div>
+</section> 

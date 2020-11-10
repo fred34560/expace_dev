@@ -202,6 +202,11 @@ class Users implements UserInterface, Serializable
      */
     private $messagerie;
 
+    /**
+     * @ORM\OneToMany(targetEntity=TemoignageClient::class, mappedBy="client", orphanRemoval=true)
+     */
+    private $temoignage;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
@@ -214,6 +219,7 @@ class Users implements UserInterface, Serializable
         $this->messages = new ArrayCollection();
         $this->devis = new ArrayCollection();
         $this->messagerie = new ArrayCollection();
+        $this->temoignage = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -799,6 +805,37 @@ class Users implements UserInterface, Serializable
             // set the owning side to null (unless already changed)
             if ($messagerie->getClient() === $this) {
                 $messagerie->setClient(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|TemoignageClient[]
+     */
+    public function getTemoignage(): Collection
+    {
+        return $this->temoignage;
+    }
+
+    public function addTemoignage(TemoignageClient $temoignage): self
+    {
+        if (!$this->temoignage->contains($temoignage)) {
+            $this->temoignage[] = $temoignage;
+            $temoignage->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTemoignage(TemoignageClient $temoignage): self
+    {
+        if ($this->temoignage->contains($temoignage)) {
+            $this->temoignage->removeElement($temoignage);
+            // set the owning side to null (unless already changed)
+            if ($temoignage->getClient() === $this) {
+                $temoignage->setClient(null);
             }
         }
 

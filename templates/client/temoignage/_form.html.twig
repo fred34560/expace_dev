@@ -1,0 +1,42 @@
+{{ form_start(form) }}
+
+{{ form_rest(form._token) }}
+
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group">
+                {{ form_row(form.message) }}
+            </div>
+            
+        </div>
+        <div class="col-3">
+            <div class="form-group">
+                {% use "bootstrap_base_layout.html.twig" %}
+
+                {% form_theme form _self %}
+
+                {% block form_widget_simple -%}
+
+                    {%- if type is defined and (type == 'range') %}
+                            {{ parent() }}
+                        {%- set required = false -%}
+                    {% endif %}
+                    
+                {%- endblock form_widget_simple %}
+                
+                {{ form_label(form.note) }}
+                {{ form_widget(form.note) }}
+                Votre note: <output name="result4" style="color:red;">--</output> sur 10
+                
+            </div>
+        </div>
+        
+        <div class="col-12">
+            <button class="btn btn-info btn-block btn-sm">{{ button_label|default('Save') }}</button>
+
+
+        </div>
+
+    </div>
+
+{{ form_end(form) }}

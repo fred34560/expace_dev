@@ -6,6 +6,7 @@ use App\Entity\Contact;
 use App\Entity\Articles;
 use App\Form\ContactType;
 use App\Entity\StatsDevelop;
+use App\Entity\TemoignageClient;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
@@ -32,7 +33,8 @@ class HomeController extends AbstractController
             'derniersArticles' => $derniersArticles,
             'applications' => $this->getDoctrine()->getRepository(StatsDevelop::class)->nbreApp(),
             'dureeCode' => $this->getDoctrine()->getRepository(StatsDevelop::class)->dureeCode(),
-            'recompense' => $this->getDoctrine()->getRepository(StatsDevelop::class)->nbreRecompense()
+            'recompense' => $this->getDoctrine()->getRepository(StatsDevelop::class)->nbreRecompense(),
+            'temoignages' => $this->getDoctrine()->getRepository(TemoignageClient::class)->findAll()
         ]);
     }
 
